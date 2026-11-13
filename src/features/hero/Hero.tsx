@@ -18,6 +18,8 @@ export function Hero({ c, name, label }: Props) {
             {first}
           </span>
         </span>
+        {/* Espacio real entre las dos líneas: sin él, el texto del h1 se lee "MiguelZuluaga". */}
+        {" "}
         <span className="name-line lg:ml-[10vw]">
           <span data-line className="block">
             {rest.join(" ")}

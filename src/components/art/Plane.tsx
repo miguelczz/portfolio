@@ -1,7 +1,7 @@
 /**
- * Avión de papel del contacto. Con ratón vuela por toda la sección siguiendo al
- * cursor (ver planeFollow en lib/motion/scenes.ts); sin ratón queda quieto en su
- * sitio de reposo. La punta apunta a +x, para que el giro coincida con el rumbo.
+ * Avión de papel del contacto. Con ratón es el cursor dentro de la sección (ver
+ * planeFollow en lib/motion/scenes.ts); sin ratón (táctil) no se muestra. La punta
+ * apunta a +x, para que el giro coincida con el rumbo.
  */
 export function Plane() {
   return (

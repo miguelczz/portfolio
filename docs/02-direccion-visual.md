@@ -310,3 +310,17 @@ se veía desbalanceado: el nombre lo llenaba todo y el rol quedaba pegado al bor
   done." Verificada palabra por palabra como última frase del artículo en dos copias del original
   (cs.ox.ac.uk y eliassi.org). ES: "Solo podemos ver un trecho corto hacia adelante, pero allí vemos
   mucho por hacer." (traducción libre, así se indica). Reemplaza a la de Alan Kay.
+
+## Decimosexta ronda (2026-11-13): correcciones de móvil
+
+- **Línea de tecnologías del héroe** ("LLMs, RAG, MCP y agentes de IA"): una regla la ocultaba con
+  `max-height: 700px` en pantallas angostas. En muchos celulares la altura visible con la barra del
+  navegador es menor a 700 px, así que desaparecía y volvía al hacer scroll (cuando la barra se
+  encoge). Se quitó la regla; ahora el robot cede espacio (probado en 320x568, 390x664 y 390x844).
+- **Avión de papel:** sin puntero fino (`hover: none` o `pointer: coarse`) no se muestra, porque
+  no hay cursor que ser y, fijo, tapaba la tarjeta de WhatsApp. Sustituye a "queda quieto".
+- **Auditoría:** sin desbordes horizontales en 320, 390; el año central de la línea de tiempo de
+  Experiencia se oculta a propósito en pantallas angostas.
+- **Limpieza:** se eliminaron cinco SVG de plantilla de Next en `public/` que nada usaba. README
+  (ES y EN) sin la sección de cómo correrlo: es un sitio publicado, no una librería.
+- **Pendiente:** imagen social (Open Graph); sin ella, el enlace se comparte sin vista previa.

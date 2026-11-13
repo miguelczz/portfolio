@@ -490,6 +490,13 @@
     pointer-events: none;
     will-change: transform;
   }
+  /* Sin ratón (táctil) no hay cursor que ser: el avión no se muestra ni se mueve, y así
+     tampoco tapa las tarjetas. JS solo lo activa con puntero fino (ver MotionRoot). */
+  @media not all and (hover: hover) and (pointer: fine) {
+    .plane {
+      display: none;
+    }
+  }
   /* Mientras el avión es el cursor, se oculta el del sistema (también sobre enlaces). */
   .plane-cursor,
   .plane-cursor * {
@@ -589,11 +596,6 @@
   @media (hover: hover) and (pointer: fine) {
     .hero-scroll:hover {
       color: var(--accent);
-    }
-  }
-  @media (max-height: 700px) and (max-width: 1023px) {
-    .hero-stack {
-      display: none;
     }
   }
   @media (min-width: 1024px) {

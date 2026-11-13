@@ -3,14 +3,15 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { useEffect } from "react";
+import { scrollTargetFor, takeScrollSpot } from "../scroll-memory";
 import {
   artScenes,
   bars,
   blink,
-  companion,
   groups,
   headings,
   heroIntro,
+  jumpTo,
   parallax,
   planeFollow,
   pointerArt,
@@ -21,6 +22,35 @@ import {
   traces,
   wifiSteer,
 } from "./scenes";
+
+/**
+ * Tras cambiar de idioma, vuelve al mismo lugar de la página (ver LangSwitch).
+ * Se reintenta mientras cargan fuentes e imágenes, salvo que la persona ya haya
+ * empezado a desplazarse.
+ */
+function restoreScroll() {
+  const spot = takeScrollSpot();
+  if (!spot) return;
+
+  let touched = false;
+  const stop = () => {
+    touched = true;
+  };
+  window.addEventListener("wheel", stop, { once: true, passive: true });
+  window.addEventListener("touchstart", stop, { once: true, passive: true });
+  window.addEventListener("keydown", stop, { once: true });
+
+  const place = () => {
+    if (touched) return;
+    const y = scrollTargetFor(spot);
+    if (y !== null) jumpTo(y);
+  };
+  place();
+  void document.fonts.ready.then(place);
+  window.addEventListener("load", place, { once: true });
+  window.setTimeout(place, 600);
+  window.setTimeout(place, 1600);
+}
 
 /**
  * Isla de cliente única que activa el movimiento de toda la página.
@@ -48,7 +78,6 @@ export function MotionRoot() {
           cleanups.push(wifiSteer());
           cleanups.push(planeFollow());
           cleanups.push(blink());
-          cleanups.push(companion());
         }
         heroIntro();
         headings();
@@ -69,6 +98,9 @@ export function MotionRoot() {
         return () => cleanups.forEach((fn) => fn());
       },
     );
+
+    // Después de crear los ScrollTrigger: moverse antes provoca un error dentro de GSAP.
+    restoreScroll();
 
     // Avisa al script de cabecera de que el movimiento arrancó (o no hace falta).
     root.dataset.motion = "ready";

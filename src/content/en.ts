@@ -14,6 +14,7 @@ export const en: Content = {
     skip: "Skip to content",
   },
   nav: {
+    about: "About",
     work: "Work",
     experience: "Experience",
     stack: "Stack",
@@ -26,21 +27,25 @@ export const en: Content = {
   hero: {
     title: "Full Stack AI Developer",
     stackline: "LLMs, RAG, MCP and AI agents",
-    statement:
-      "Building and operating AI agent systems in production: orchestration, backend, interface and infrastructure.",
     ctaWork: "See the work",
     ctaContact: "Contact",
+    scroll: "Scroll",
     aboutLabel: "About",
     about: [
-      "Experience at a multi-tenant SaaS with AI agents over WhatsApp (3C Community), building LLM agents for technical processes (Tigo Colombia) and automating data work for auditing (Audit Integral Advisors).",
-      "Self-taught, focused on code quality, operational security and what happens after the demo: evaluating and observing agents in production, and tests that catch real regressions.",
+      "Software Developer focused on AI agent systems in production: orchestration, backend, interface and infrastructure.",
+      "I work with LLMs, RAG and MCP. I have built agents for technical processes (Tigo Colombia) and for a multi-tenant SaaS with WhatsApp agents (3C Community), plus data automation for audit teams (Audit Integral Advisors).",
+      "I prioritize code quality, operational security and what happens after the demo: evaluating and observing agents in production, and tests that catch real regressions. Self-taught.",
     ],
     facts: [
+      { label: "Availability", value: "Available immediately" },
       { label: "Location", value: "Medellín, Colombia" },
-      { label: "Education", value: "Software Engineering, sixth semester (in progress)" },
-      { label: "Languages", value: "Spanish native, English C1 (EF SET certified)" },
-      { label: "Recognition", value: "Best Capstone Project in three different semesters" },
+      { label: "Time zone", value: "UTC-5. Adaptable to whatever time zone is required" },
+      { label: "Work mode", value: "Remote and on-site experience" },
     ],
+    quote: {
+      text: "We can only see a short distance ahead, but we can see plenty there that needs to be done.",
+      by: "Alan Turing, Computing Machinery and Intelligence, 1950",
+    },
   },
   work: {
     heading: "Work",
@@ -50,8 +55,6 @@ export const en: Content = {
       decision: "Core decision",
       fails: "How it fails",
       facts: "In numbers and controls",
-      scope: "Scope",
-      illustrative: "Illustrative order, not measured timings.",
       context: "Context",
     },
     cautelia: {
@@ -64,7 +67,7 @@ export const en: Content = {
       decision:
         "A language model reads each message but can only propose actions from a closed list. Code validates them against the case, and each insurer's rules, which are versioned files, decide where the case goes. Coverage decisions belong to a separate AI adjuster that shows its steps and the sources for each one.",
       stack:
-        "React, TypeScript, FastAPI, Python, LangGraph, Claude, PostgreSQL (RLS, pgvector), Deepgram, Cartesia, Langfuse, input and output guardrails, custom MCP server, Docker, Google Cloud Run",
+        "React, TypeScript, FastAPI, Python, LangGraph, Claude Haiku 5.5, PostgreSQL (RLS, pgvector), Deepgram, Cartesia, Langfuse, input and output guardrails, custom MCP server, Docker, Google Cloud Run",
       facts: [
         "More than 4,000 automated tests with an 80% coverage floor.",
         "Insurers isolated with row-level security, and a test that fails if any table lacks it.",
@@ -76,8 +79,6 @@ export const en: Content = {
         "Voice latency: not measured.",
         "It is not connected to any real insurer. Voice works in the browser only, with a daily call limit.",
       ],
-      failsSource:
-        "Source: Cautelia README, generated from the run of October 15, 2026 and read on November 12, 2026.",
       traceHeading: "How a message travels",
       turn: {
         title: "One turn: reporting a crash",
@@ -88,7 +89,7 @@ export const en: Content = {
             note: "Recognizes orders to ignore the rules and off-topic messages before any model is called.",
           },
           agent: {
-            label: "agent (Claude)",
+            label: "agent (Claude Haiku 5.5)",
             note: "Understands the message and writes the reply. It can only propose actions from a closed list.",
           },
           caseFlow: {
@@ -142,7 +143,7 @@ export const en: Content = {
       context:
         "Built and operated at 3C Community, from April to October 2026. The product belongs to the company.",
       points: [
-        "Job postings, AI-powered CV screening, performance management and internal communication.",
+        "Job postings, AI-powered CV screening, performance management, organizational climate and internal communication.",
         "Automated candidate and employee conversations over WhatsApp, with AI agents and semantic CV ranking.",
         "Identity and access control with Keycloak (OIDC), and per-tenant data isolation with PostgreSQL Row Level Security.",
         "Continuous deployment to production with Docker and GitHub Actions.",
@@ -169,7 +170,6 @@ export const en: Content = {
       stack:
         "React, TailwindCSS, FastAPI, Python, TShark, Qdrant, Redis, LiteLLM (Groq/Gemini/OpenAI), MCP, Langfuse, FalkorDB, Docker",
       pipelineHeading: "What happens to a capture",
-      hint: "Move the cursor over the illustration: close to the router, the client steers to 5 GHz (Band Steering).",
       steps: {
         capture: {
           label: "capture .pcap / .pcapng",
@@ -193,8 +193,8 @@ export const en: Content = {
         },
       },
       shotChart: {
-        alt: "RSSI signal chart over time with the switches between the 2.4 and 5 GHz bands and the BTM events",
-        caption: "Band changes across the capture, with the BTM events",
+        alt: "RSSI signal chart over time with the switches between the 2.4 and 5 GHz bands and the BTM events (BSS Transition Management)",
+        caption: "Band changes across the capture, with the BTM events (BSS Transition Management, 802.11v)",
       },
       shotObservability: {
         alt: "Observability dashboard with traces, LLM spend and the Pipe assistant chat",
@@ -246,7 +246,7 @@ export const en: Content = {
         company: "3C Community S.A.S.",
         place: "Remote",
         bullets: [
-          "Development and operation of a multi-tenant B2B SaaS platform for Colombian SMEs, covering recruitment, employee management and performance reviews.",
+          "Development and operation of a multi-tenant B2B SaaS platform for Colombian SMEs, covering recruitment, employee management, performance reviews and organizational climate.",
           "Automated candidate and employee conversations over WhatsApp, with AI agents and semantic CV ranking.",
           "Identity and access control with Keycloak (OIDC) and per-tenant data isolation with PostgreSQL Row Level Security.",
           "Continuous deployment to production with Docker and GitHub Actions.",
@@ -267,8 +267,12 @@ export const en: Content = {
         company: "Audit Integral Advisors S.A.S.",
         place: "Remote",
         bullets: [
-          "Developed technology solutions and automated internal processes.",
-          "Data extraction and visualization in Python for auditing and organizational management information systems.",
+          "Developed technology solutions and automated the company's internal processes.",
+          "Extracted and processed data with Python for auditing and organizational management information systems.",
+          "Developed and documented analyses in Jupyter Notebook, combining code, results and explanations in one environment.",
+          "Visualized data in Jupyter Notebook to support analysis and decision-making in audit processes.",
+          "Automated repetitive data collection and consolidation tasks, reducing manual work and errors.",
+          "Presented clear results to the audit and organizational management teams to make them easier to interpret.",
         ],
       },
     },
@@ -282,17 +286,13 @@ export const en: Content = {
         items: [
           "Python",
           "TypeScript",
-          "JavaScript",
           "Java",
           "SQL",
           "FastAPI",
-          "Django",
           "Spring Boot",
           "React",
           "Next.js",
           "TailwindCSS",
-          "Bootstrap",
-          "Pygame",
         ],
       },
       {
@@ -322,6 +322,7 @@ export const en: Content = {
           "Redis",
           "Celery",
           "pgvector",
+          "Jupyter Notebook",
         ],
       },
       {
@@ -333,12 +334,9 @@ export const en: Content = {
           "Vitest",
           "Playwright",
           "Keycloak (OIDC)",
-          "AWS",
           "Cloudflare",
-          "n8n",
           "TShark (Wireshark)",
           "WhatsApp APIs (Meta/Twilio)",
-          "Wompi API",
           "Google Cloud Run",
         ],
       },
@@ -348,6 +346,7 @@ export const en: Content = {
       items: [
         { degree: "Software Engineering, in progress (sixth semester)", school: "Corporación Universitaria Minuto de Dios" },
         { degree: "Information Systems Programming Technician", school: "Politécnico Colombiano Jaime Isaza Cadavid" },
+        { degree: "Full Stack Web Developer, February to July 2023", school: "Henry" },
       ],
     },
     languages: {

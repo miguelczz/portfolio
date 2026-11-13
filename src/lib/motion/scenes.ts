@@ -1,7 +1,7 @@
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import Lenis from "lenis";
-import { PLANE, WIFI } from "@/components/art/geometry";
+import { WIFI } from "@/components/art/geometry";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -27,9 +27,18 @@ function settle(el: Element) {
   gsap.set(el, { clearProps: "opacity,transform,visibility" });
 }
 
+let activeLenis: Lenis | null = null;
+
+/** Salta a una posición sin animar. Con Lenis activo hay que pasar por él, o la deshace. */
+export function jumpTo(y: number) {
+  if (activeLenis) activeLenis.scrollTo(y, { immediate: true, force: true });
+  else window.scrollTo(0, y);
+}
+
 /** Scroll suave con Lenis, alimentado por el ticker de GSAP. Devuelve su limpieza. */
 export function startLenis(): () => void {
   const lenis = new Lenis({ autoRaf: false, anchors: { offset: -56 } });
+  activeLenis = lenis;
   lenis.on("scroll", ScrollTrigger.update);
   const tick = (time: number) => lenis.raf(time * 1000);
   gsap.ticker.add(tick);
@@ -38,6 +47,7 @@ export function startLenis(): () => void {
     gsap.ticker.remove(tick);
     gsap.ticker.lagSmoothing(500, 33);
     lenis.destroy();
+    activeLenis = null;
   };
 }
 
@@ -108,7 +118,7 @@ export function reveals() {
         duration: 0.8,
         ease: "power3.out",
         delay: Number(el.dataset.delay ?? 0),
-        scrollTrigger: { trigger: el, start: "top 92%", once: true },
+        scrollTrigger: { trigger: el, start: el.closest("[data-hero]") ? "top bottom" : "top 92%", once: true },
         onComplete: () => settle(el),
       },
     );
@@ -182,6 +192,7 @@ const FROM_KEYS: Record<string, string> = {
   fromOpacity: "opacity",
   fromSx: "scaleX",
   fromSy: "scaleY",
+  fromDraw: "strokeDashoffset",
 };
 
 /** Lee data-from-* de un elemento: de dónde parte y a dónde llega (su estado en reposo). */
@@ -192,7 +203,7 @@ function artTween(el: ArtEl) {
   for (const [key, prop] of Object.entries(FROM_KEYS)) {
     if (d[key] === undefined) continue;
     from[prop] = Number(d[key]);
-    to[prop] = prop === "x" || prop === "y" || prop === "rotation" ? 0 : 1;
+    to[prop] = prop === "x" || prop === "y" || prop === "rotation" || prop === "strokeDashoffset" ? 0 : 1;
   }
   if (Object.keys(from).length === 0) return null;
   if (d.origin) {
@@ -205,7 +216,7 @@ function artTween(el: ArtEl) {
   return { from, to, at: Number(d.at ?? 0) };
 }
 
-const ART_FROM = "[data-from-x],[data-from-y],[data-from-scale],[data-from-rot],[data-from-opacity],[data-from-sx],[data-from-sy]";
+const ART_FROM = "[data-from-x],[data-from-y],[data-from-scale],[data-from-rot],[data-from-opacity],[data-from-sx],[data-from-sy],[data-from-draw]";
 
 /**
  * Entrada de las ilustraciones. data-art-scrub avanza con el scroll;
@@ -353,12 +364,7 @@ function createFollower(opts: {
     },
     stop,
     position: () => pos,
-    /** Coloca el seguidor sin animar. */
-    jump(next: Point) {
-      stop();
-      pos = { ...next };
-      target = { ...next };
-    },
+    target: () => target,
   };
 }
 
@@ -450,113 +456,108 @@ export function wifiSteer(): () => void {
   return () => cleanups.forEach((fn) => fn());
 }
 
-/** Contacto: el avión de papel vuela hacia el cursor y gira según su dirección. */
-export function planeFollow(): () => void {
-  const cleanups = all<SVGSVGElement>("[data-plane-root]").map((svg) => {
-    const plane = svg.querySelector<SVGElement>("[data-plane]");
-    if (!plane) return () => {};
-    const { width, height, home } = PLANE;
-    let angle: number = home.deg;
-
-    const follower = createFollower({
-      start: { x: home.x, y: home.y },
-      smooth: 0.03,
-      onFrame: (p, v) => {
-        if (Math.hypot(v.x, v.y) > 0.6) {
-          const heading = (Math.atan2(v.y, v.x) * 180) / Math.PI;
-          const diff = ((heading - angle + 540) % 360) - 180;
-          angle += diff * 0.16;
-        }
-        plane.setAttribute("transform", `translate(${p.x.toFixed(1)} ${p.y.toFixed(1)}) rotate(${angle.toFixed(1)})`);
-      },
-    });
-
-    const onMove = (event: PointerEvent) => {
-      if (event.pointerType !== "mouse") return;
-      const p = svgPoint(svg, event, width);
-      follower.goTo({ x: clamp(p.x, 44, width - 44), y: clamp(p.y, 44, height - 44) });
-    };
-    const onLeave = () => follower.goTo({ x: home.x, y: home.y });
-
-    svg.addEventListener("pointermove", onMove, { passive: true });
-    svg.addEventListener("pointerleave", onLeave);
-    return () => {
-      follower.stop();
-      svg.removeEventListener("pointermove", onMove);
-      svg.removeEventListener("pointerleave", onLeave);
-    };
-  });
-  return () => cleanups.forEach((fn) => fn());
-}
-
 /**
- * Al salir del héroe aparece un agente pequeño que persigue al cursor sin
- * acercarse más de `gap`: si el cursor viene hacia él, se aparta. No recibe
- * clics (pointer-events: none) y se queda quieto cuando el cursor se detiene.
+ * Contacto: con ratón, el avión de papel ES el cursor. Dentro de la sección se oculta el
+ * cursor del sistema y la punta del avión queda exactamente en el puntero; gira hacia
+ * donde se mueve y conserva el último rumbo al detenerse. No hay bucle ni seguimiento
+ * retardado: se coloca en cada evento del puntero (y del scroll, para que no se despegue
+ * mientras la página se desplaza). No captura el ratón, así que las tarjetas se pulsan
+ * igual. Al salir del puntero de la sección, el avión vuelve a su sitio de reposo.
  */
-export function companion(): () => void {
-  const el = document.querySelector<HTMLElement>("[data-companion]");
-  const hero = document.querySelector<HTMLElement>("[data-hero]");
-  if (!el || !hero) return () => {};
+export function planeFollow(): () => void {
+  const zone = document.querySelector<HTMLElement>("[data-plane-zone]");
+  const plane = zone?.querySelector<HTMLElement>("[data-plane]");
+  if (!zone || !plane) return () => {};
 
-  const size = 64;
-  const gap = 96;
-  const margin = 44;
-  const topLimit = 84; // debajo de la cabecera
-  let side: Point = { x: 1, y: 1 };
-  const start = { x: window.innerWidth * 0.82, y: window.innerHeight * 0.72 };
+  const REST_ANGLE = -14;
+  let angle = REST_ANGLE;
+  let active = false;
+  let last: Point | null = null; // último punto desde el que se calculó el rumbo
+  let client: Point | null = null; // última posición conocida del puntero
+  let glideTimer: number | undefined;
+
+  // La punta del dibujo está a 42 de 96 unidades del centro (ver components/art/Plane.tsx).
+  const tipLength = () => (plane.offsetWidth / 96) * 42;
+  const home = (): Point => ({ x: zone.clientWidth * 0.78, y: zone.clientHeight * 0.4 });
   const place = (p: Point) => {
-    el.style.transform = `translate3d(${(p.x - size / 2).toFixed(1)}px, ${(p.y - size / 2).toFixed(1)}px, 0)`;
+    plane.style.transform = `translate3d(${p.x.toFixed(1)}px, ${p.y.toFixed(1)}px, 0) rotate(${angle.toFixed(1)}deg)`;
   };
-  place(start);
-
-  const follower = createFollower({ start, smooth: 0.01, onFrame: place });
-  let pastHero = false;
-  let moved = false;
-  const sync = () => {
-    if (pastHero && moved) el.setAttribute("data-on", "");
-    else el.removeAttribute("data-on");
+  /** Coloca el avión de modo que su punta quede sobre el puntero. */
+  const placeAtPointer = (pt: Point) => {
+    const box = zone.getBoundingClientRect();
+    const rad = (angle * Math.PI) / 180;
+    const tip = tipLength();
+    place({ x: pt.x - box.left - Math.cos(rad) * tip, y: pt.y - box.top - Math.sin(rad) * tip });
+  };
+  /** Transición corta solo al entrar y al salir; mientras sigue al puntero no hay ninguna. */
+  const glide = (ms: number) => {
+    window.clearTimeout(glideTimer);
+    plane.style.transition = `transform ${ms}ms cubic-bezier(0.23, 1, 0.32, 1)`;
+    glideTimer = window.setTimeout(() => {
+      plane.style.transition = "";
+    }, ms + 30);
   };
 
+  // A partir de aquí la posición la lleva JS; antes la fijaba el CSS en su sitio de reposo.
+  plane.style.left = "0";
+  plane.style.top = "0";
+  place(home());
+
+  const enter = (event: PointerEvent) => {
+    active = true;
+    zone.classList.add("plane-cursor");
+    client = { x: event.clientX, y: event.clientY };
+    last = client;
+    glide(180);
+    placeAtPointer(client);
+  };
   const onMove = (event: PointerEvent) => {
     if (event.pointerType !== "mouse") return;
-    const cursor = { x: event.clientX, y: event.clientY };
-    if (!moved) {
-      // Primer movimiento: aparece junto al cursor, no en una esquina.
-      moved = true;
-      const first = { x: clamp(cursor.x + gap, margin, window.innerWidth - margin), y: clamp(cursor.y + gap, topLimit, window.innerHeight - margin) };
-      follower.jump(first);
-      place(first);
-      sync();
+    if (!active) enter(event);
+    client = { x: event.clientX, y: event.clientY };
+    if (last) {
+      const dx = client.x - last.x;
+      const dy = client.y - last.y;
+      // Con movimientos muy cortos se acumula la distancia para no temblar.
+      if (Math.hypot(dx, dy) >= 6) {
+        const heading = (Math.atan2(dy, dx) * 180) / Math.PI;
+        angle += (((heading - angle + 540) % 360) - 180) * 0.35;
+        last = client;
+      }
     }
-    if (!pastHero) return;
-    const pos = follower.position();
-    const dx = pos.x - cursor.x;
-    const dy = pos.y - cursor.y;
-    const dist = Math.hypot(dx, dy);
-    if (dist > 1) side = { x: dx / dist, y: dy / dist };
-    follower.goTo({
-      x: clamp(cursor.x + side.x * gap, margin, window.innerWidth - margin),
-      y: clamp(cursor.y + side.y * gap, topLimit, window.innerHeight - margin),
-    });
+    placeAtPointer(client);
   };
-  window.addEventListener("pointermove", onMove, { passive: true });
+  const onLeave = () => {
+    if (!active) return;
+    active = false;
+    zone.classList.remove("plane-cursor");
+    angle = REST_ANGLE;
+    glide(600);
+    place(home());
+  };
+  const onScroll = () => {
+    if (active && client) placeAtPointer(client);
+  };
+  const onResize = () => {
+    if (!active) place(home());
+  };
 
-  const trigger = ScrollTrigger.create({
-    trigger: hero,
-    start: "bottom 35%",
-    end: "max",
-    onToggle: (self) => {
-      pastHero = self.isActive;
-      sync();
-    },
-  });
+  zone.addEventListener("pointermove", onMove, { passive: true });
+  zone.addEventListener("pointerleave", onLeave);
+  window.addEventListener("scroll", onScroll, { passive: true });
+  window.addEventListener("resize", onResize);
 
   return () => {
-    follower.stop();
-    trigger.kill();
-    window.removeEventListener("pointermove", onMove);
-    el.removeAttribute("data-on");
+    window.clearTimeout(glideTimer);
+    zone.removeEventListener("pointermove", onMove);
+    zone.removeEventListener("pointerleave", onLeave);
+    window.removeEventListener("scroll", onScroll);
+    window.removeEventListener("resize", onResize);
+    zone.classList.remove("plane-cursor");
+    plane.style.left = "";
+    plane.style.top = "";
+    plane.style.transform = "";
+    plane.style.transition = "";
   };
 }
 

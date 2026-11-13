@@ -53,3 +53,12 @@ Distintos a propósito: encajan con cada mercado. El hero repite el del idioma a
 2. **Dirección C:** dónde corre el backend del mini-agente (ruta de Next o el FastAPI de
    Cautelia), qué modelo y cuál es el tope mensual de gasto. Se decide después de A.
 3. **Dominio:** cuando haya uno, actualizar `hreflang`, sitemap y metadatos.
+
+## Stack acotado (2026-11-13, decisión de Miguel)
+
+Stack pasó de 45 a 38 tecnologías (39 en EN): se volvió a incluir Java y Spring Boot y se quitó JavaScript (queda TypeScript), por pedido de Miguel. Criterio: lo que se afirma en "Lo que uso" debe poder
+explicarse en dos minutos con un ejemplo propio. Se quitaron 6 de las 8 que solo vienen de proyectos
+académicos (Django, Bootstrap, Pygame, n8n, AWS, API de Wompi; Java y Spring Boot se quedaron): siguen visibles en
+"Trabajo anterior", junto a su proyecto. El CV conserva la lista completa (lo leen filtros por
+palabras clave). Pendiente de Miguel: decidir sobre las que no aparecen en otra parte de la página
+(Skills y Judge System, Function Calling, SQLAlchemy, pytest, Vitest, Playwright).

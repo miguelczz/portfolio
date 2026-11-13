@@ -11,9 +11,3 @@ export const WIFI = {
   /** El cliente no baja de aquí: debajo va la leyenda de las bandas. */
   maxClientY: 248,
 } as const;
-
-export const PLANE = {
-  width: 480,
-  height: 360,
-  home: { x: 250, y: 170, deg: -14 },
-} as const;

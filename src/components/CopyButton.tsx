@@ -23,9 +23,9 @@ export function CopyButton({ value, label, doneLabel }: Props) {
     <button
       type="button"
       onClick={copy}
-      className="label inline-flex shrink-0 items-center gap-2 rounded-sm border border-line px-3 py-2 text-ink transition-colors hover:border-ink2"
+      className="label inline-flex shrink-0 items-center gap-2 rounded-sm border border-line px-4 py-2.5 text-ink transition-colors hover:border-accent hover:text-accent"
     >
-      {done ? <Check size={16} aria-hidden="true" /> : <Copy size={16} aria-hidden="true" />}
+      {done ? <Check size={18} aria-hidden="true" /> : <Copy size={18} aria-hidden="true" />}
       <span aria-live="polite">{done ? doneLabel : label}</span>
     </button>
   );

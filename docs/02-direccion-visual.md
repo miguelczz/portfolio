@@ -139,3 +139,174 @@ Cambios pedidos por Miguel tras ver la primera versión navegable:
   Cautelia; ISSI HR y Wi-Fi llevan el relleno.
 - **Contacto:** valores de las tarjetas pequeñas en una sola línea.
 - **Nombre del héroe:** más separación vertical entre "Miguel" y "Zuluaga".
+
+## Cuarta ronda (2026-11-13)
+
+- **Se quitó el robot que persigue al cursor** (el agente pequeño): tapaba el contenido.
+- **Logo:** la M y la Z, ambas en cobalto (también en el ícono de la pestaña).
+- **Medallas:** una más pequeña en cada fila de "Trabajo anterior", junto al texto del premio;
+  se quitó la del título.
+- **Avión de papel:** su punta ahora apunta al rumbo (antes el dibujo no era simétrico y giraba
+  raro). Vuela por toda la sección de contacto, no solo en un cuadro, y pasa por detrás de las
+  tarjetas y del texto. La composición (sello, estela y carta) ya no lleva marco.
+- **Contacto:** la tarjeta del correo tiene el mismo diseño que las demás; el botón de copiar
+  va junto a la flecha.
+- **Etiquetas quitadas:** "Orden ilustrativo...", la fuente del README en "Cómo falla", la nota
+  del Wi-Fi sobre el cursor y la palabra "Alcance" en ISSI HR. Las fuentes de los números quedan
+  en el comentario del archivo de contenido, no en pantalla.
+- **Contenido:** "Sobre mí" abre con el recorrido (de la auditoría a los agentes);
+  Claude Haiku 5.5 en Cautelia (`claude-haiku-5-5` en su configuración y su línea base de
+  evaluación); clima organizacional en ISSI HR y 3C Community; seis viñetas en Audit Integral
+  Advisors (Jupyter Notebook, según su ficha del Servicio Público de Empleo); Jupyter Notebook en
+  el stack; Henry (Full Stack Web Developer, febrero a julio de 2023) en educación; BTM
+  explicado en la leyenda de la gráfica del Wi-Fi.
+
+## Quinta ronda (2026-11-13): red de agentes (descartada)
+
+Miguel eligió la opción B y se hizo un diagrama de nodos (`NetworkArt`). Lo rechazó: "ultra
+genérico". Se eliminó junto con sus etiquetas (`hero.net`).
+
+## Sexta ronda (2026-11-13): personaje arma un robot, integrado al nombre
+
+Pidió un personaje arreglando o creando un robot, no un cuadro "puesto a la fuerza", y fácil de
+entender (poco detalle). Resultado (`components/art/MakerScene.tsx`, animación `makerScene()`):
+
+- Formas planas con los colores del sitio, sin marco ni fondo. Va dentro del `h1`, medida en `em`
+  del título (`.name-scene`), con los pies sobre la línea base de "Miguel", a la derecha de la "l".
+- Entrada: las piezas del robot caen y rebotan en orden, la persona entra, aprieta un perno tres
+  veces (chispa), el robot enciende los ojos y saluda. Con ratón: sus ojos siguen al cursor y
+  saluda al pasar por él. Sin JS o con movimiento reducido se ve terminado.
+- Favicon (`app/icon.svg`): solo las letras MZ, sin fondo, cobalto (claro en modo oscuro).
+
+### Ajuste de la sexta ronda (2026-11-13)
+
+Le gustó la escena y la animación (incluida la de después de la entrada); pidió cambiar los
+personajes: la persona ya no es de palitos sino una figura plana al estilo de Storyset (camiseta
+naranja, pantalón, zapatos, pelo, sonrisa) y **mide lo mismo que las dos líneas del nombre**
+(de arriba de "Miguel" a la base de "Zuluaga"). El robot es **pequeño, de una línea de alto**
+(apoyado en la base de "Miguel") y con otro diseño: orugas, cabeza de pantalla con ojos cobalto,
+orejas naranja y antena. Sin contornos; los colores del robot salen de los tokens del sitio (se
+ve bien en claro y oscuro) y los de la persona son fijos. Escala: 1 unidad del viewBox = 0.01em.
+El héroe lleva `overflow-x-clip` para que la entrada deslizante no cause scroll horizontal.
+
+## Séptima ronda (2026-11-13): héroe de una sola pantalla (descartada la ilustración nueva)
+
+Se probaron un busto de robot con elementos flotantes y luego un robot de cuerpo completo basado en un
+boceto; ninguno convenció ("no se pudo"). Miguel pidió volver al estilo anterior.
+
+**Resultado final** (`features/hero/Hero.tsx`, `components/art/Observer.tsx`):
+
+- Vuelve el nombre enorme (Zuluaga desplazado) con el robot de pantalla original a la derecha de
+  "Miguel" (ojos que siguen al cursor, parpadeo, entrada de una sola vez).
+- El héroe ocupa exactamente `100svh` menos el header: el tamaño del nombre sale de
+  `min(24vw, (alto libre - franja del rol) / 2.12)`. No asoma texto de la sección siguiente.
+- Abajo, una franja con filete superior: el título ("Desarrollador de Software" / "Full Stack AI
+  Developer") en grande y debajo, en cobalto con un filete corto, las tecnologías ("LLMs, RAG, MCP y
+  agentes de IA"); los dos botones a la derecha. En angosto se apila: nombre, robot, rol.
+- Sin frase de "quién soy", sin íconos de redes y sin saludo ("Hola, soy"). "Quién soy" vive en
+  "Sobre mí" (`features/about/About.tsx`), sección propia en el menú, con una descripción
+  profesional (no una historia).
+- Fuera del proyecto: `HeroRobot`, `MakerScene` y `makerScene()`; `hero.statement` y `hero.hello`.
+
+## Octava ronda (2026-11-13): héroe en dos columnas, botones a "Sobre mí"
+
+El héroe anterior (nombre gigante, robot pequeño al costado y franja inferior con filete y botones)
+se veía desbalanceado: el nombre lo llenaba todo y el rol quedaba pegado al borde.
+
+- Dos columnas desde 1024 px: a la izquierda nombre, título y tecnologías agrupados; a la derecha el
+  robot grande (máx. 32 rem) centrado en vertical. Tamaño del nombre:
+  `min(15vw, (alto libre - 17rem) / 2.1, 15rem)`. Sin desplazamiento de "Zuluaga".
+- Se quitaron del héroe el filete superior y los botones. "Ver el trabajo" y "Contacto" viven ahora
+  bajo los párrafos de "Sobre mí", y se quitó el filete sobre los datos de la derecha.
+- En angosto se apila: nombre y rol arriba, robot debajo.
+
+## Novena ronda (2026-11-13): "Sobre mí" con jerarquía y aire hacia "Trabajo"
+
+- El texto se divide en frase principal (grande, `.about-lead`), detalle en tono secundario y los dos
+  botones. Mismo contenido que antes, solo partido en tres cadenas (`hero.about[0]` es la frase).
+- Los datos de la derecha pasan a una sola columna, sin líneas, ordenados por utilidad para quien
+  recluta: Ubicación, Idiomas, Estudios, Reconocimientos. Reconocimientos es el más débil y se
+  puede quitar sin que se note.
+- Ritmo de secciones: `About` y `Work` usan el mismo respiro que las demás (`py-16 md:py-24`).
+
+## Décima ronda (2026-11-13): medallas de "Trabajo anterior" y datos de "Sobre mí"
+
+- La medalla es una celda propia de cada fila, a la derecha (junto a la flecha), más grande
+  (4,75 rem en escritorio, 3 rem en móvil) y centrada en la altura de la fila, no del texto.
+  El texto del premio queda sin icono, en cobalto, bajo las tecnologías.
+- Se quitó "Reconocimientos" de los datos de "Sobre mí" (decisión de Miguel): el premio ya se ve
+  en cada proyecto de "Trabajo anterior".
+
+## Undécima ronda (2026-11-13): ficha de "Sobre mí", pista de scroll y barra discreta
+
+- **Ficha de datos** (fuente: CV ES/EN, sin referencias de terceros): Ubicación, Idiomas,
+  Experiencia ("Desde febrero de 2024, en tres empresas"), Modalidad (remoto y presencial),
+  Estudios y Formación técnica. En escritorio va pegada al texto (columnas `40rem` + resto) en dos
+  columnas; en angosto el orden es texto, ficha y botones. Reconocimientos sigue fuera.
+- El texto de detalle sube a casi tinta plena (`.about-body`, 88 % de `--ink`).
+- **Pista de scroll** en el héroe (`.hero-scroll`, "Desplázate" + flecha de Phosphor): abajo a la
+  izquierda, la flecha se mueve solo tres veces (CSS, sin bucle) y no se anima con
+  `prefers-reduced-motion`.
+- **Barra de scroll** del navegador: `scrollbar-width: thin` y pulgar al 22 % de la tinta sobre
+  pista transparente. La progresión ya la marca la barra de la cabecera.
+
+## Duodécima ronda (2026-11-13): ficha sin educación y avión por encima
+
+- **Ficha de "Sobre mí":** se quitaron Estudios y Formación técnica (ya aparecen más abajo), y
+  también Experiencia (la línea de tiempo está justo debajo). Quedan cuatro datos que no se repiten
+  en otra sección: Ubicación, Zona horaria (UTC-5 todo el año; dato general, no del CV), Idiomas
+  (con puntaje y año del certificado EF SET, del CV) y Modalidad. Pendiente de Miguel: Disponibilidad
+  y tipo de rol que busca; no están en el CV y no se inventan.
+- **Avión de papel:** ahora vuela por encima de las tarjetas (`.plane` con `z-index: 5`, sigue sin
+  capturar el ratón). Cambia la decisión anterior de dejarlo detrás; a cambio puede tapar el texto
+  que queda bajo el cursor.
+
+## Decimotercera ronda (2026-11-13): disponibilidad y avión como cursor
+
+- **Ficha de "Sobre mí":** quedan Disponibilidad ("Disponible de inmediato", dato de Miguel),
+  Ubicación y Modalidad. Se quitaron Idiomas (ya está completo en Stack, con el certificado) y
+  Zona horaria (Miguel lo descartó). Miguel quiere pensar si se añade otro dato.
+- **Avión de papel = cursor** (`planeFollow` en `lib/motion/scenes.ts`): con ratón, dentro de la
+  sección de contacto se oculta el cursor del sistema (`.plane-cursor`) y la punta del avión queda
+  exactamente en el puntero; gira hacia donde se mueve. Sin seguimiento retardado ni bucle: se coloca
+  en cada evento de puntero y de scroll. Mide 56 px, no captura el ratón y las tarjetas se pulsan igual.
+  Con táctil o `prefers-reduced-motion` queda quieto en su sitio de reposo. Reemplaza el vuelo
+  suavizado de la ronda anterior.
+
+- **Cabecera (2026-11-13):** se quitó el nombre; queda el monograma MZ, una barra "/" y la sección
+  actual. El enlace del monograma conserva `aria-label` ("Inicio") para lectores de pantalla.
+
+## Decimocuarta ronda (2026-11-13): frase en "Sobre mí" y zona horaria adaptable
+
+- **Ficha:** vuelve Zona horaria, pero sin dato literal: "Me adapto a la zona horaria que se requiera"
+  (decisión de Miguel). Quedan Disponibilidad, Ubicación, Zona horaria y Modalidad.
+- **Frase** bajo la ficha, en el color de acento y con un icono de comillas de Phosphor (sin
+  filetes): "Any fool can write code that a computer can understand. Good programmers write code
+  that humans can understand." Martin Fowler, *Refactoring*, 2nd edition. Verificada en el texto del
+  libro (capítulo de renombrado de variables); la versión en español es traducción libre y así se
+  indica. Datos en `hero.quote` (ES y EN). No inventar ni parafrasear citas: citar solo si se puede
+  comprobar en la fuente.
+
+## Decimoquinta ronda (2026-11-13): frase a lo ancho y sin juicio
+
+- **Zona horaria:** "UTC-5. Adaptado a la zona horaria que se requiera" (EN: "UTC-5. Adaptable to
+  whatever time zone is required"). Sin primera persona, a pedido de Miguel.
+- **Frase:** se reemplaza la de Fowler (hablaba de "tontos" y de código que otros entienden, y
+  podía usarse en su contra) por una que no evalúa a nadie: "The best way to predict the future is
+  to invent it." Alan Kay. Según su propio relato (correo de 1998), la dijo en 1971 en una reunión de
+  Xerox PARC; no hay documento de la época con las palabras exactas, así que se atribuye solo a Kay,
+  sin fecha. ES: "La mejor manera de predecir el futuro es inventarlo." (traducción libre).
+- **Diseño:** la frase ocupa una fila propia a todo el ancho, debajo de texto, ficha y botones, en
+  acento, con comillas de Phosphor. En angosto va al final. Regla: no usar frases sobre errores,
+  fallos o capacidad de otras personas; citar solo lo comprobable.
+
+- **Frase (ajuste, 2026-11-13):** vuelve a la columna derecha, bajo los datos (la fila a todo el ancho
+  no convenció), pero ahora ocupa todo el ancho de la columna y un cuerpo algo mayor (`clamp(1.45rem,
+  2.3vw, 2rem)`) en lugar de la medida estrecha anterior. Miguel está eligiendo la frase definitiva;
+  la de Alan Kay es provisional.
+
+- **Frase definitiva (2026-11-13), elegida por Miguel:** Alan Turing, "Computing Machinery and Intelligence"
+  (Mind, 1950): "We can only see a short distance ahead, but we can see plenty there that needs to be
+  done." Verificada palabra por palabra como última frase del artículo en dos copias del original
+  (cs.ox.ac.uk y eliassi.org). ES: "Solo podemos ver un trecho corto hacia adelante, pero allí vemos
+  mucho por hacer." (traducción libre, así se indica). Reemplaza a la de Alan Kay.

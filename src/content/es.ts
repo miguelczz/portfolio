@@ -14,6 +14,7 @@ export const es: Content = {
     skip: "Saltar al contenido",
   },
   nav: {
+    about: "Sobre mí",
     work: "Trabajo",
     experience: "Experiencia",
     stack: "Stack",
@@ -26,21 +27,25 @@ export const es: Content = {
   hero: {
     title: "Desarrollador de Software",
     stackline: "LLMs, RAG, MCP y agentes de IA",
-    statement:
-      "Construcción y operación de sistemas de agentes de IA en producción: orquestación, backend, interfaz e infraestructura.",
     ctaWork: "Ver el trabajo",
     ctaContact: "Contacto",
+    scroll: "Desplázate",
     aboutLabel: "Sobre mí",
     about: [
-      "Experiencia en un SaaS multiempresa con agentes de IA por WhatsApp (3C Community), en agentes con LLMs para procesos técnicos (Tigo Colombia) y en automatización de datos para auditoría (Audit Integral Advisors).",
-      "Autodidacta, con foco en la calidad del código, la seguridad operativa y en lo que pasa después de la demo: la evaluación y la observabilidad de los agentes en producción, y pruebas que detectan regresiones reales.",
+      "Desarrollador de Software enfocado en sistemas de agentes de IA en producción: orquestación, backend, interfaz e infraestructura.",
+      "Trabajo con LLMs, RAG y MCP. He construido agentes para procesos técnicos (Tigo Colombia) y para un SaaS multiempresa con agentes por WhatsApp (3C Community), y automatización de datos para equipos de auditoría (Audit Integral Advisors).",
+      "Priorizo la calidad del código, la seguridad operativa y lo que ocurre después de la demo: la evaluación y la observabilidad de los agentes en producción y pruebas que detectan regresiones reales. Autodidacta.",
     ],
     facts: [
+      { label: "Disponibilidad", value: "Disponible de inmediato" },
       { label: "Ubicación", value: "Medellín, Colombia" },
-      { label: "Estudios", value: "Ingeniería de Software, sexto semestre (en curso)" },
-      { label: "Idiomas", value: "Español nativo, inglés C1 (certificado EF SET)" },
-      { label: "Reconocimientos", value: "Mejor Proyecto Pedagógico Integrador en tres semestres" },
+      { label: "Zona horaria", value: "UTC-5. Adaptado a la zona horaria que se requiera" },
+      { label: "Modalidad", value: "Experiencia en remoto y presencial" },
     ],
+    quote: {
+      text: "Solo podemos ver un trecho corto hacia adelante, pero allí vemos mucho por hacer.",
+      by: "Alan Turing, Computing Machinery and Intelligence, 1950 (traducción libre)",
+    },
   },
   work: {
     heading: "Trabajo",
@@ -50,8 +55,6 @@ export const es: Content = {
       decision: "Decisión central",
       fails: "Cómo falla",
       facts: "En números y controles",
-      scope: "Alcance",
-      illustrative: "Orden ilustrativo, no son tiempos medidos.",
       context: "Contexto",
     },
     cautelia: {
@@ -64,7 +67,7 @@ export const es: Content = {
       decision:
         "Un modelo de lenguaje entiende cada mensaje, pero solo puede proponer acciones de una lista cerrada. El código las valida contra el caso, y las reglas de cada aseguradora, que son archivos versionados, deciden el rumbo. Las decisiones de cobertura las toma un ajustador de IA separado, que muestra sus pasos y las fuentes de cada uno.",
       stack:
-        "React, TypeScript, FastAPI, Python, LangGraph, Claude, PostgreSQL (RLS, pgvector), Deepgram, Cartesia, Langfuse, guardrails de entrada y salida, servidor MCP propio, Docker, Google Cloud Run",
+        "React, TypeScript, FastAPI, Python, LangGraph, Claude Haiku 5.5, PostgreSQL (RLS, pgvector), Deepgram, Cartesia, Langfuse, guardrails de entrada y salida, servidor MCP propio, Docker, Google Cloud Run",
       facts: [
         "Más de 4.000 pruebas automáticas con un piso de cobertura del 80 %.",
         "Aseguradoras aisladas con seguridad a nivel de fila, y una prueba que falla si alguna tabla no la tiene.",
@@ -76,8 +79,6 @@ export const es: Content = {
         "Latencia de voz: no medida.",
         "No está conectada a ninguna aseguradora real. La voz funciona solo en el navegador, con un límite de llamadas por día.",
       ],
-      failsSource:
-        "Fuente: README de Cautelia, generado desde la corrida del 15 de octubre de 2026 y leído el 12 de noviembre de 2026.",
       traceHeading: "Cómo viaja un mensaje",
       turn: {
         title: "Un turno: reporte de un choque",
@@ -88,7 +89,7 @@ export const es: Content = {
             note: "Reconoce órdenes de ignorar las reglas y mensajes fuera de tema antes de llamar a ningún modelo.",
           },
           agent: {
-            label: "agente (Claude)",
+            label: "agente (Claude Haiku 5.5)",
             note: "Entiende el mensaje y redacta la respuesta. Solo puede proponer acciones de una lista cerrada.",
           },
           caseFlow: {
@@ -142,7 +143,7 @@ export const es: Content = {
       context:
         "Construida y operada en 3C Community, de abril a octubre de 2026. El producto pertenece a la empresa.",
       points: [
-        "Vacantes, análisis de hojas de vida con IA, evaluación de desempeño y comunicación interna.",
+        "Vacantes, análisis de hojas de vida con IA, evaluación de desempeño, clima organizacional y comunicación interna.",
         "Conversación con candidatos y empleados por WhatsApp, con agentes de IA y ranking semántico de hojas de vida.",
         "Identidad y control de accesos con Keycloak (OIDC), y aislamiento de datos por empresa con Row Level Security de PostgreSQL.",
         "Despliegue continuo a producción con Docker y GitHub Actions.",
@@ -169,7 +170,6 @@ export const es: Content = {
       stack:
         "React, TailwindCSS, FastAPI, Python, TShark, Qdrant, Redis, LiteLLM (Groq/Gemini/OpenAI), MCP, Langfuse, FalkorDB, Docker",
       pipelineHeading: "Qué pasa con una captura",
-      hint: "Mueve el cursor sobre la ilustración: cerca del router, el cliente pasa a 5 GHz (Band Steering).",
       steps: {
         capture: {
           label: "captura .pcap / .pcapng",
@@ -193,8 +193,8 @@ export const es: Content = {
         },
       },
       shotChart: {
-        alt: "Gráfica de la señal RSSI en el tiempo con los cambios entre las bandas de 2,4 y 5 GHz y los eventos BTM",
-        caption: "Cambios de banda a lo largo de la captura, con los eventos BTM",
+        alt: "Gráfica de la señal RSSI en el tiempo con los cambios entre las bandas de 2,4 y 5 GHz y los eventos BTM (BSS Transition Management)",
+        caption: "Cambios de banda a lo largo de la captura, con los eventos BTM (BSS Transition Management, 802.11v)",
       },
       shotObservability: {
         alt: "Panel de observabilidad con trazas, inversión en LLM y el chat del asistente Pipe",
@@ -246,7 +246,7 @@ export const es: Content = {
         company: "3C Community S.A.S.",
         place: "Remoto",
         bullets: [
-          "Desarrollo y operación de un SaaS B2B multiempresa para MiPymes colombianas: selección de personal, gestión de empleados y evaluación de desempeño.",
+          "Desarrollo y operación de un SaaS B2B multiempresa para MiPymes colombianas: selección de personal, gestión de empleados, evaluación de desempeño y clima organizacional.",
           "Automatización de la conversación con candidatos y empleados por WhatsApp, con agentes de IA y ranking semántico de hojas de vida.",
           "Identidad y control de accesos con Keycloak (OIDC) y aislamiento de datos por empresa con Row Level Security de PostgreSQL.",
           "Despliegue continuo a producción con Docker y GitHub Actions.",
@@ -267,8 +267,12 @@ export const es: Content = {
         company: "Audit Integral Advisors S.A.S.",
         place: "Remoto",
         bullets: [
-          "Desarrollo de soluciones tecnológicas y automatización de procesos internos.",
-          "Extracción y visualización de datos en Python para sistemas de información de auditoría y gestión organizacional.",
+          "Desarrollo de soluciones tecnológicas y automatización de procesos internos de la empresa.",
+          "Extracción y procesamiento de datos con Python para sistemas de información de auditoría y gestión organizacional.",
+          "Análisis desarrollados y documentados en Jupyter Notebook, con código, resultados y explicaciones en un mismo entorno.",
+          "Visualización de datos en Jupyter Notebook para apoyar el análisis y la toma de decisiones en los procesos de auditoría.",
+          "Automatización de tareas repetitivas de recolección y consolidación de información, con menos trabajo manual y menos errores.",
+          "Presentación de resultados claros a los equipos de auditoría y de gestión organizacional para facilitar su interpretación.",
         ],
       },
     },
@@ -282,17 +286,13 @@ export const es: Content = {
         items: [
           "Python",
           "TypeScript",
-          "JavaScript",
           "Java",
           "SQL",
           "FastAPI",
-          "Django",
           "Spring Boot",
           "React",
           "Next.js",
           "TailwindCSS",
-          "Bootstrap",
-          "Pygame",
         ],
       },
       {
@@ -321,6 +321,7 @@ export const es: Content = {
           "Redis",
           "Celery",
           "pgvector",
+          "Jupyter Notebook",
         ],
       },
       {
@@ -332,12 +333,9 @@ export const es: Content = {
           "Vitest",
           "Playwright",
           "Keycloak (OIDC)",
-          "AWS",
           "Cloudflare",
-          "n8n",
           "TShark (Wireshark)",
           "APIs de WhatsApp (Meta/Twilio)",
-          "API de Wompi",
           "Google Cloud Run",
         ],
       },
@@ -347,6 +345,7 @@ export const es: Content = {
       items: [
         { degree: "Ingeniería de Software, en curso (sexto semestre)", school: "Corporación Universitaria Minuto de Dios" },
         { degree: "Técnico en Programación de Sistemas de Información", school: "Politécnico Colombiano Jaime Isaza Cadavid" },
+        { degree: "Full Stack Web Developer, de febrero a julio de 2023", school: "Henry" },
       ],
     },
     languages: {

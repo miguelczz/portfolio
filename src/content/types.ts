@@ -7,6 +7,7 @@ export type ShotText = { alt: string; caption: string };
 export type Content = {
   meta: { title: string; description: string; ogLocale: string; skip: string };
   nav: {
+    about: string;
     work: string;
     experience: string;
     stack: string;
@@ -19,12 +20,13 @@ export type Content = {
   hero: {
     title: string;
     stackline: string;
-    statement: string;
     ctaWork: string;
     ctaContact: string;
+    scroll: string;
     aboutLabel: string;
     about: readonly string[];
     facts: readonly { label: string; value: string }[];
+    quote: { text: string; by: string };
   };
   work: {
     heading: string;
@@ -34,8 +36,6 @@ export type Content = {
       decision: string;
       fails: string;
       facts: string;
-      scope: string;
-      illustrative: string;
       context: string;
     };
     cautelia: {
@@ -47,7 +47,6 @@ export type Content = {
       stack: string;
       facts: readonly string[];
       failsLines: readonly string[];
-      failsSource: string;
       traceHeading: string;
       turn: TraceText<TurnKey>;
       offTopic: TraceText<OffTopicKey>;
@@ -75,7 +74,6 @@ export type Content = {
       decision: string;
       stack: string;
       pipelineHeading: string;
-      hint: string;
       steps: Record<WifiStepKey, SpanText>;
       shotChart: ShotText;
       shotObservability: ShotText;

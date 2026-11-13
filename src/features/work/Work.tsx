@@ -14,7 +14,7 @@ type Props = { c: Content["work"]; label: string };
 
 export function Work({ c, label }: Props) {
   return (
-    <section id="work" data-section data-label={label} className="wrap pb-8 pt-8 md:pt-16">
+    <section id="work" data-section data-label={label} className="wrap pb-8 pt-16 md:pt-24">
       <SectionHeading title={c.heading} kicker={c.kicker} />
 
       <Cautelia c={c} />
@@ -130,7 +130,6 @@ function Cautelia({ c }: { c: Content["work"] }) {
         <div className="grid gap-10">
           <TraceBlock spans={turnSpans} text={a.turn} />
           <TraceBlock spans={offTopicSpans} text={a.offTopic} />
-          <p className="label">{c.labels.illustrative}</p>
         </div>
       </Block>
 
@@ -150,9 +149,6 @@ function Cautelia({ c }: { c: Content["work"] }) {
 
       <Block title={c.labels.fails} tone="alert">
         <Lines items={a.failsLines} />
-        <p className="label mt-3" data-reveal>
-          {a.failsSource}
-        </p>
       </Block>
     </CaseShell>
   );
@@ -182,7 +178,6 @@ function Issi({ c }: { c: Content["work"] }) {
       <Shot image={images.issi} alt={a.shot.alt} caption={a.shot.caption} />
       <Lines items={a.points} />
       <p className="label max-w-[68ch]" data-reveal>
-        <span className="text-ink">{c.labels.scope}: </span>
         {a.scope}
       </p>
     </CaseShell>
@@ -207,7 +202,7 @@ function Wifi({ c }: { c: Content["work"] }) {
         </ExtLink>
       }
     >
-      <ArtFrame hint={a.hint}>
+      <ArtFrame>
         <WifiArt />
       </ArtFrame>
 

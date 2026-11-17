@@ -323,4 +323,7 @@ se veía desbalanceado: el nombre lo llenaba todo y el rol quedaba pegado al bor
   Experiencia se oculta a propósito en pantallas angostas.
 - **Limpieza:** se eliminaron cinco SVG de plantilla de Next en `public/` que nada usaba. README
   (ES y EN) sin la sección de cómo correrlo: es un sitio publicado, no una librería.
-- **Pendiente:** imagen social (Open Graph); sin ella, el enlace se comparte sin vista previa.
+- **Imagen social (Open Graph):** `src/app/[locale]/opengraph-image.tsx` genera una de 1200x630 por idioma al
+  construir el sitio, con la paleta oscura, Archivo y el mismo texto del héroe. Usa copias estáticas de
+  Archivo (Bold y Medium, en `src/app/fonts/og/`) porque el generador no lee WOFF2. La dirección que muestra
+  sale de `SITE_URL`: al cambiar de dominio se define esa variable en Vercel y la imagen se actualiza sola.

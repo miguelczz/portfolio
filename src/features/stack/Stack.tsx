@@ -10,11 +10,17 @@ export function Stack({ c, label }: Props) {
     <section id="stack" data-section data-label={label} className="wrap py-16 md:py-24">
       <SectionHeading title={c.heading} kicker={c.kicker} />
 
-      <div className="grid gap-x-10 gap-y-12 border-t border-ink pt-8 sm:grid-cols-2 lg:grid-cols-4" data-stack>
+      <div className="border-t border-ink" data-stack>
         {c.groups.map((group) => (
-          <section key={group.label} data-stack-col>
-            <h3 className="mb-4 text-[1.1rem] font-bold leading-none text-accent [font-stretch:80%]">{group.label}</h3>
-            <ul className="grid gap-1 text-[0.95rem] leading-snug">
+          <section
+            key={group.label}
+            data-stack-col
+            className="grid gap-3 border-b border-line py-6 lg:grid-cols-12 lg:gap-10"
+          >
+            <h3 className="text-[1.1rem] font-bold leading-none text-accent [font-stretch:80%] lg:col-span-3">
+              {group.label}
+            </h3>
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] leading-snug lg:col-span-9">
               {group.items.map((item) => (
                 <li key={item} className="stack-item" data-stack-item>
                   {item}

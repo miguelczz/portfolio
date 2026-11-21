@@ -327,3 +327,46 @@ se veía desbalanceado: el nombre lo llenaba todo y el rol quedaba pegado al bor
   construir el sitio, con la paleta oscura, Archivo y el mismo texto del héroe. Usa copias estáticas de
   Archivo (Bold y Medium, en `src/app/fonts/og/`) porque el generador no lee WOFF2. La dirección que muestra
   sale de `SITE_URL`: al cambiar de dominio se define esa variable en Vercel y la imagen se actualiza sola.
+- **Cabecera (2026-11-21):** a la izquierda solo el nombre, con el rango de Archivo en sus dos extremos
+  (nombre condensado 66 % en peso 800, apellido ancho 125 % en peso 300); desaparecen el monograma, la
+  barra "/" y la etiqueta de sección. A la derecha, botón "CV" con descarga según el idioma
+  (`/cv/miguel-zuluaga-cv-es.pdf` y `-en.pdf`), después idioma y tema. El CV va solo en la cabecera, no en Sobre mí.
+- **CV público:** el PDF en español del sitio no lleva la sección Referencias ni datos de terceros; el de
+  empresas (con referencias) vive aparte en `~/Miguel/CVs/ES`. Ambos CV se alinearon con el sitio (Stack recortado,
+  ISSI HR primero, una cifra con fuente en Cautelia).
+- **Sobre mí con retrato (2026-11-21):** dos columnas del mismo alto. Izquierda: frase principal, dos párrafos, botones
+  y, al fondo, la cita de Turing. Derecha: la foto C (fondo blanco), sin filtro y sin recortar (marco 4:5, la proporción del original,
+  pegada al borde derecho, hasta 28 rem de ancho); su alto (~560 px a 1440) es el de la columna izquierda. Sin datos ni enlaces bajo la foto (Disponibilidad, Modalidad, Ubicación,
+  Zona horaria, LinkedIn y GitHub se quitaron: ya están en Contacto). En angosto: texto, foto 4:5, botones, cita.
+- **Texto de Sobre mí:** en primera persona y sobre ti, no sobre empresas ("Creo sistemas de agentes de IA y los llevo
+  hasta producción"; "Soy Miguel, de Medellín…"). Sin "evaluar y observar": tú creas sistemas. Patrón tomado de Ikrame,
+  Paula y Suliman: saludo corto, qué haces, de dónde vienes, con qué trabajas, sin listar empleadores.
+- **Nombre de la cabecera:** nombre completo con la letra del héroe (Archivo condensada 62 %, peso 800). Se probaron
+  Instrument Serif, Fraunces, Bodoni Moda y Syne; se descartaron por desentonar con el estilo del sitio.
+- **Botón de CV:** mismo alto (40 px) y mismo borde que el selector de idioma; el acento va en el texto y el icono.
+- **Texto de Sobre mí (versión final de la ronda):** molde de Ikrame, profesional y sin anécdotas: una frase ("Sistemas de agentes
+  de IA, del modelo al despliegue."), una presentación ("Soy Miguel, Desarrollador de Software en Medellín…") y una línea técnica con
+  los años de experiencia, los proyectos en producción y los tres premios. Sin disponibilidad ni modalidad.
+- **Trabajo (2026-11-21):** la portada ya no lleva los casos completos: tres filas alternadas (ISSI HR, Cautelia, Agente Experto Wi-Fi)
+  con ilustración, una línea, tecnologías y "Ver caso". Cada caso tiene su página, `/{es|en}/work/{issi|cautelia|wifi}`, con su
+  propia imagen de vista previa y entrada en el mapa del sitio. Los casos están en `src/features/work/Cases.tsx`.
+- **Experiencia y Stack compactos:** dos viñetas por empleo y el resto en un `<details>` ("Ver más"); Stack en una fila por grupo.
+  La portada pasó de 1.503 a 660 palabras y de 17 a ~9 pantallas.
+- **Movimiento (cierre del 2026-11-21):** se descartaron por no gustar el avión de la barra de progreso, el disco "Ver", la cinta de
+  tecnologías, el cursor propio (queda el del sistema; el avión de Contacto se mantiene) y la inclinación de la foto. Quedan: titulares
+  de Sobre mí que suben palabra por palabra (`SplitWords`), líneas que se dibujan sobre cada caso, botones que se inclinan hacia el
+  cursor, subrayado del menú, elevación de las ilustraciones de Trabajo y transición nativa entre páginas (`@view-transition`), además
+  del movimiento base (entrada del nombre, robot, títulos, trazas). Solo `transform`/`opacity`; todo se apaga con
+  `prefers-reduced-motion` y en táctil. El usuario percibe estas animaciones como poco visibles: pendiente decidir si se hacen más
+  grandes (nombre que se desvanece al bajar, cortinas en Trabajo, entrada de carga, títulos que se desplazan).
+- **Orden título y fechas:** el título va siempre primero (Experiencia: cargo, empresa, fechas; Trabajo y casos: nombre y después el año;
+  Trabajo anterior: nombre, descripción y año).
+- **Héroe:** sin barra bajo él y sin el texto "Desplázate": solo una flecha hacia abajo, centrada, en la parte baja.
+- **Vista previa v3 (la v1 y la v2 se descartaron: genéricas, con "MZ /" y ubicación):** `src/lib/og-card.tsx`. Se ve como el sitio:
+  fondo oscuro con un resplandor azul suave y el nombre enorme en la misma Archivo condensada del héroe (instancias estáticas
+  `Archivo-Condensed800/600.ttf` en `src/app/fonts/og/`). Portada: nombre en dos líneas, título, tecnologías y el robot. Cada caso:
+  su nombre, una línea y su ilustración (se convierte a SVG con un serializador propio, porque Next no permite `react-dom/server`
+  ahí). Sin etiquetas, sin ubicación, sin monograma, sin dirección (el marco de TechToJob ya la muestra).
+- **Rendimiento (Lighthouse local, build de producción, con todo el movimiento):** móvil 100 (LCP 0,9 s, TBT 40 ms, CLS 0),
+  escritorio 100, accesibilidad, buenas prácticas y SEO en 100; 336 KiB de peso. Se logró el LCP arrancando el texto del héroe en 1 % de opacidad, no en 0.
+

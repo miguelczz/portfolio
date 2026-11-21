@@ -91,6 +91,67 @@ export function headings() {
   });
 }
 
+/** Palabras que suben una a una desde su máscara al entrar el bloque en pantalla. */
+export function words() {
+  all("[data-words]").forEach((root) => {
+    const items = all("[data-word]", root);
+    if (!items.length) return;
+    gsap.fromTo(
+      items,
+      { yPercent: 110, y: 0 },
+      {
+        yPercent: 0,
+        y: 0,
+        duration: 0.9,
+        ease: "power4.out",
+        stagger: 0.045,
+        scrollTrigger: { trigger: root, start: "top 88%", once: true },
+        onComplete: () => items.forEach(settle),
+      },
+    );
+  });
+}
+
+/** Líneas divisorias que se dibujan de izquierda a derecha al llegar a ellas. */
+export function draws() {
+  all("[data-draw]").forEach((line) => {
+    gsap.fromTo(
+      line,
+      { scaleX: 0 },
+      {
+        scaleX: 1,
+        duration: 1.2,
+        ease: "power3.inOut",
+        scrollTrigger: { trigger: line, start: "top 92%", once: true },
+        onComplete: () => settle(line),
+      },
+    );
+  });
+}
+
+/** Botones que se inclinan hacia el cursor (máximo 8 px). Solo con ratón; usa la propiedad `translate`. */
+export function magnetic(): () => void {
+  const cleanups = all(".btn, .btn-outline, .cv-link").map((el) => {
+    const move = (event: PointerEvent) => {
+      const box = el.getBoundingClientRect();
+      const x = clamp((event.clientX - (box.left + box.width / 2)) * 0.22, -8, 8);
+      const y = clamp((event.clientY - (box.top + box.height / 2)) * 0.3, -6, 6);
+      el.style.translate = `${x.toFixed(1)}px ${y.toFixed(1)}px`;
+    };
+    const leave = () => {
+      el.style.translate = "";
+    };
+    el.addEventListener("pointermove", move, { passive: true });
+    el.addEventListener("pointerleave", leave);
+    return () => {
+      el.removeEventListener("pointermove", move);
+      el.removeEventListener("pointerleave", leave);
+      el.style.translate = "";
+    };
+  });
+  return () => cleanups.forEach((fn) => fn());
+}
+
 /** Desplazamiento suave de la captura del héroe respecto al scroll (solo transform). */
 export function parallax() {
   all("[data-parallax]").forEach((el) => {
@@ -109,9 +170,11 @@ export function parallax() {
 /** Aparición única de bloques sueltos. */
 export function reveals() {
   all("[data-reveal]").forEach((el) => {
+    // En el héroe parte de 1 % de opacidad, no de 0: Chrome no cuenta como pintado un elemento
+    // invisible y el texto del héroe (el LCP) solo contaría al terminar la animación.
     gsap.fromTo(
       el,
-      { opacity: 0, y: 20 },
+      { opacity: el.closest("[data-hero]") ? 0.01 : 0, y: 20 },
       {
         opacity: 1,
         y: 0,

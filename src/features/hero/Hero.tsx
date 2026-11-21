@@ -47,9 +47,8 @@ export function Hero({ c, name, label }: Props) {
         <Observer />
       </div>
 
-      <a className="hero-scroll label" href="#about" data-reveal data-delay="0.7">
-        {c.scroll}
-        <ArrowDown size={16} aria-hidden="true" />
+      <a className="hero-scroll" href="#about" aria-label={c.scroll} data-reveal data-delay="0.7">
+        <ArrowDown size={26} aria-hidden="true" />
       </a>
     </section>
   );

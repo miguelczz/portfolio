@@ -23,6 +23,13 @@ export const links = {
   efset: "https://cert.efset.org/en/YNg43c",
 } as const;
 
+/** Tecnologías que se muestran en la fila de cada caso de la portada. */
+export const caseTags = {
+  issi: ["Next.js", "FastAPI", "PostgreSQL", "Keycloak"],
+  cautelia: ["LangGraph", "FastAPI", "PostgreSQL", "MCP"],
+  wifi: ["LiteLLM", "Qdrant", "MCP", "FastAPI"],
+} as const;
+
 export type JobId = "threec" | "tigo" | "audit";
 
 /** Meses inclusivos, formato AAAA-MM. Fuente: CV (corregido el 2026-11-12). */

@@ -16,6 +16,9 @@ export type Content = {
     switchHref: string;
     theme: string;
     home: string;
+    cv: string;
+    cvLabel: string;
+    cvHref: string;
   };
   hero: {
     title: string;
@@ -24,8 +27,8 @@ export type Content = {
     ctaContact: string;
     scroll: string;
     aboutLabel: string;
+    photoAlt: string;
     about: readonly string[];
-    facts: readonly { label: string; value: string }[];
     quote: { text: string; by: string };
   };
   work: {
@@ -37,6 +40,9 @@ export type Content = {
       fails: string;
       facts: string;
       context: string;
+      viewCase: string;
+      back: string;
+      nextCase: string;
     };
     cautelia: {
       name: string;
@@ -96,6 +102,8 @@ export type Content = {
     heading: string;
     kicker: string;
     chartLabel: string;
+    more: string;
+    less: string;
     jobs: Record<JobId, { role: string; company: string; place: string; bullets: readonly string[] }>;
   };
   stack: {

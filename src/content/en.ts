@@ -23,6 +23,9 @@ export const en: Content = {
     switchHref: "/es",
     theme: "Toggle theme",
     home: "Home",
+    cv: "CV",
+    cvLabel: "Download CV as PDF",
+    cvHref: "/cv/miguel-zuluaga-cv-en.pdf",
   },
   hero: {
     title: "Full Stack AI Developer",
@@ -31,16 +34,11 @@ export const en: Content = {
     ctaContact: "Contact",
     scroll: "Scroll",
     aboutLabel: "About",
+    photoAlt: "Portrait of Miguel Zuluaga",
     about: [
-      "Software Developer focused on AI agent systems in production: orchestration, backend, interface and infrastructure.",
-      "I work with LLMs, RAG and MCP. I have built agents for technical processes (Tigo Colombia) and for a multi-tenant SaaS with WhatsApp agents (3C Community), plus data automation for audit teams (Audit Integral Advisors).",
-      "I prioritize code quality, operational security and what happens after the demo: evaluating and observing agents in production, and tests that catch real regressions. Self-taught.",
-    ],
-    facts: [
-      { label: "Availability", value: "Available immediately" },
-      { label: "Location", value: "Medellín, Colombia" },
-      { label: "Time zone", value: "UTC-5. Adaptable to whatever time zone is required" },
-      { label: "Work mode", value: "Remote and on-site experience" },
+      "AI agent systems, from the model to deployment.",
+      "I'm Miguel, a Full Stack AI Developer in Medellín. I build AI agent systems end to end: LLM orchestration, backend, interface and infrastructure, with clean architecture, tests and continuous deployment to production.",
+      "I develop in Python and TypeScript, with FastAPI and Next.js; agents with LLMs, RAG and MCP; PostgreSQL, Docker and GitHub Actions. Over 2 years of professional experience, projects in production and three projects awarded best of their semester.",
     ],
     quote: {
       text: "We can only see a short distance ahead, but we can see plenty there that needs to be done.",
@@ -56,6 +54,9 @@ export const en: Content = {
       fails: "How it fails",
       facts: "In numbers and controls",
       context: "Context",
+      viewCase: "View case",
+      back: "Back to work",
+      nextCase: "Next case",
     },
     cautelia: {
       name: "Cautelia",
@@ -240,6 +241,8 @@ export const en: Content = {
     heading: "Experience",
     kicker: "2024 to 2026",
     chartLabel: "Each bar is a job, on a three-year timeline.",
+    more: "Show more",
+    less: "Show less",
     jobs: {
       threec: {
         role: "Software Developer",

@@ -11,7 +11,9 @@ import {
   groups,
   headings,
   heroIntro,
+  draws,
   jumpTo,
+  magnetic,
   parallax,
   planeFollow,
   pointerArt,
@@ -21,6 +23,7 @@ import {
   startLenis,
   traces,
   wifiSteer,
+  words,
 } from "./scenes";
 
 /**
@@ -78,12 +81,15 @@ export function MotionRoot() {
           cleanups.push(wifiSteer());
           cleanups.push(planeFollow());
           cleanups.push(blink());
+          cleanups.push(magnetic());
         }
         heroIntro();
         headings();
         parallax();
         reveals();
         groups();
+        words();
+        draws();
         bars();
         traces();
         stack();

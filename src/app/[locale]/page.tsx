@@ -25,11 +25,11 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
       >
         {c.meta.skip}
       </a>
-      <Header c={c.nav} locale={locale} />
+      <Header c={c.nav} locale={locale} name={person.name} />
       <main id="main">
         <Hero c={c.hero} name={person.name} label={c.nav.home} />
         <About c={c.hero} label={c.nav.about} />
-        <Work c={c.work} label={c.nav.work} />
+        <Work c={c.work} label={c.nav.work} locale={locale} />
         <Experience c={c.experience} locale={locale} label={c.nav.experience} />
         <Earlier c={c.earlier} />
         <Stack c={c.stack} label={c.nav.stack} />

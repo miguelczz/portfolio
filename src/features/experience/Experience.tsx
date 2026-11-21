@@ -7,6 +7,8 @@ type Props = { c: Content["experience"]; locale: Locale; label: string };
 
 /** Más reciente primero. */
 const ORDER: readonly JobId[] = ["threec", "tigo", "audit"];
+/** Viñetas que se ven de entrada; el resto va en "Ver más". */
+const VISIBLE = 2;
 
 function monthIndex(ym: string): number {
   const [year, month] = ym.split("-").map(Number);
@@ -59,20 +61,37 @@ export function Experience({ c, locale, label }: Props) {
           return (
             <article key={id} className="grid gap-6 border-b border-line py-10 lg:grid-cols-12 lg:gap-14">
               <header className="grid content-start gap-1 lg:col-span-4" data-reveal>
-                <p className="label">
+                <h3 className="h-sub">{job.role}</h3>
+                <p className="text-ink2">{job.company}</p>
+                <p className="label mt-2">
                   {toDate(start)} {joiner} {toDate(end)}
                 </p>
-                <h3 className="h-sub mt-2">{job.role}</h3>
-                <p className="text-ink2">{job.company}</p>
                 <p className="label">{job.place}</p>
               </header>
-              <ul className="grid content-start lg:col-span-8" data-group>
-                {job.bullets.map((bullet) => (
-                  <li key={bullet} className="max-w-[68ch] border-b border-line py-3 first:pt-0 last:border-b-0" data-item>
-                    {bullet}
-                  </li>
-                ))}
-              </ul>
+              <div className="lg:col-span-8">
+                <ul className="grid content-start" data-group>
+                  {job.bullets.slice(0, VISIBLE).map((bullet) => (
+                    <li key={bullet} className="max-w-[68ch] border-b border-line py-3 first:pt-0 last:border-b-0" data-item>
+                      {bullet}
+                    </li>
+                  ))}
+                </ul>
+                {job.bullets.length > VISIBLE && (
+                  <details className="job-more">
+                    <summary className="label">
+                      <span className="more-closed">{c.more}</span>
+                      <span className="more-open">{c.less}</span>
+                    </summary>
+                    <ul className="mt-2 grid content-start">
+                      {job.bullets.slice(VISIBLE).map((bullet) => (
+                        <li key={bullet} className="max-w-[68ch] border-t border-line py-3">
+                          {bullet}
+                        </li>
+                      ))}
+                    </ul>
+                  </details>
+                )}
+              </div>
             </article>
           );
         })}

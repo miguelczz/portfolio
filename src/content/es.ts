@@ -23,6 +23,9 @@ export const es: Content = {
     switchHref: "/en",
     theme: "Cambiar tema",
     home: "Inicio",
+    cv: "CV",
+    cvLabel: "Descargar CV en PDF",
+    cvHref: "/cv/miguel-zuluaga-cv-es.pdf",
   },
   hero: {
     title: "Desarrollador de Software",
@@ -31,16 +34,11 @@ export const es: Content = {
     ctaContact: "Contacto",
     scroll: "Desplázate",
     aboutLabel: "Sobre mí",
+    photoAlt: "Retrato de Miguel Zuluaga",
     about: [
-      "Desarrollador de Software enfocado en sistemas de agentes de IA en producción: orquestación, backend, interfaz e infraestructura.",
-      "Trabajo con LLMs, RAG y MCP. He construido agentes para procesos técnicos (Tigo Colombia) y para un SaaS multiempresa con agentes por WhatsApp (3C Community), y automatización de datos para equipos de auditoría (Audit Integral Advisors).",
-      "Priorizo la calidad del código, la seguridad operativa y lo que ocurre después de la demo: la evaluación y la observabilidad de los agentes en producción y pruebas que detectan regresiones reales. Autodidacta.",
-    ],
-    facts: [
-      { label: "Disponibilidad", value: "Disponible de inmediato" },
-      { label: "Ubicación", value: "Medellín, Colombia" },
-      { label: "Zona horaria", value: "UTC-5. Adaptado a la zona horaria que se requiera" },
-      { label: "Modalidad", value: "Experiencia en remoto y presencial" },
+      "Sistemas de agentes de IA, del modelo al despliegue.",
+      "Soy Miguel, Desarrollador de Software en Medellín. Creo sistemas de agentes de IA de principio a fin: orquestación con LLMs, backend, interfaz e infraestructura, con arquitectura limpia, pruebas y despliegue continuo a producción.",
+      "Desarrollo en Python y TypeScript, con FastAPI y Next.js; agentes con LLMs, RAG y MCP; PostgreSQL, Docker y GitHub Actions. Más de 2 años de experiencia profesional, proyectos en producción y tres proyectos premiados como el mejor de su semestre.",
     ],
     quote: {
       text: "Solo podemos ver un trecho corto hacia adelante, pero allí vemos mucho por hacer.",
@@ -56,6 +54,9 @@ export const es: Content = {
       fails: "Cómo falla",
       facts: "En números y controles",
       context: "Contexto",
+      viewCase: "Ver caso",
+      back: "Volver al trabajo",
+      nextCase: "Siguiente caso",
     },
     cautelia: {
       name: "Cautelia",
@@ -240,6 +241,8 @@ export const es: Content = {
     heading: "Experiencia",
     kicker: "2024 a 2026",
     chartLabel: "Cada barra es un empleo, sobre una línea de tiempo de tres años.",
+    more: "Ver más",
+    less: "Ver menos",
     jobs: {
       threec: {
         role: "Desarrollador de Software",

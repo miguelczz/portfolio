@@ -20,10 +20,10 @@ export function Earlier({ c }: Props) {
               rel="noopener noreferrer"
               className="row-link grid grid-cols-[1fr_auto] gap-x-4 gap-y-3 border-t-0 border-b border-line py-7 lg:grid-cols-12 lg:items-center lg:gap-x-10"
             >
-              <span className="label col-span-2 lg:col-span-1 lg:self-start">{item.year}</span>
-              <span className="col-span-2 grid gap-2 lg:col-span-5">
+              <span className="col-span-2 grid gap-2 lg:col-span-6">
                 <span className="text-[clamp(1.6rem,3vw,2.25rem)] font-bold leading-none [font-stretch:75%]">{item.name}</span>
                 <span className="max-w-[56ch] text-ink2">{item.description}</span>
+                <span className="label">{item.year}</span>
               </span>
               <span className="grid gap-2 lg:col-span-4">
                 <span className="meta">{item.stack}</span>

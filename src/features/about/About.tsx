@@ -1,14 +1,15 @@
 import { ArrowDown, Quotes } from "@phosphor-icons/react/dist/ssr";
 import { SectionHeading } from "@/components/SectionHeading";
+import { SplitWords } from "@/components/SplitWords";
 import type { Content } from "@/content/types";
+import { AboutPhoto } from "./AboutPhoto";
 
 type Props = { c: Content["hero"]; label: string };
 
 /**
- * Sobre mí: una frase principal grande (qué hace), el detalle y los botones a la izquierda;
- * pegada a ellos, una ficha de datos (sin líneas) y, debajo de los datos, una frase en el color
- * de acento. En angosto el orden es texto, ficha con frase y botones; en ancho los botones
- * quedan bajo el texto y la ficha con la frase a su lado.
+ * Sobre mí en dos columnas del mismo alto. A la izquierda: la frase principal, el detalle,
+ * los botones y, al fondo, la frase de cita. A la derecha: el retrato, que se estira a todo
+ * el alto de la columna. En angosto el orden es texto, retrato, botones y cita.
  */
 export function About({ c, label }: Props) {
   const [lead, ...body] = c.about;
@@ -18,7 +19,9 @@ export function About({ c, label }: Props) {
       <SectionHeading title={c.aboutLabel} />
       <div className="about-grid">
         <div className="about-text grid content-start gap-8" data-reveal>
-          <p className="about-lead">{lead}</p>
+          <p className="about-lead" data-words>
+            <SplitWords text={lead} />
+          </p>
           <div className="about-body grid max-w-[60ch] gap-4">
             {body.map((paragraph) => (
               <p key={paragraph}>{paragraph}</p>
@@ -26,22 +29,7 @@ export function About({ c, label }: Props) {
           </div>
         </div>
 
-        <div className="about-side grid content-start gap-10">
-          <dl className="grid content-start gap-x-10 gap-y-7 sm:grid-cols-2 lg:grid-cols-1 xl:grid-cols-2" data-group>
-            {c.facts.map((fact) => (
-              <div key={fact.label} data-item>
-                <dt className="label">{fact.label}</dt>
-                <dd className="mt-1 leading-snug">{fact.value}</dd>
-              </div>
-            ))}
-          </dl>
-
-          <figure className="about-quote grid gap-3" data-reveal data-delay="0.1">
-            <Quotes size={28} weight="fill" aria-hidden="true" />
-            <blockquote>{c.quote.text}</blockquote>
-            <figcaption className="label">{c.quote.by}</figcaption>
-          </figure>
-        </div>
+        <AboutPhoto alt={c.photoAlt} />
 
         <div className="about-cta flex flex-wrap items-center gap-x-5 gap-y-3" data-reveal data-delay="0.1">
           <a className="btn" href="#work">
@@ -52,6 +40,14 @@ export function About({ c, label }: Props) {
             {c.ctaContact}
           </a>
         </div>
+
+        <figure className="about-quote grid gap-3" data-reveal data-delay="0.1">
+          <Quotes size={28} weight="fill" aria-hidden="true" />
+          <blockquote data-words>
+            <SplitWords text={c.quote.text} />
+          </blockquote>
+          <figcaption className="label">{c.quote.by}</figcaption>
+        </figure>
       </div>
     </section>
   );

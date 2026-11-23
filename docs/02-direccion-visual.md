@@ -369,6 +369,9 @@ se veía desbalanceado: el nombre lo llenaba todo y el rol quedaba pegado al bor
   ahí). Sin etiquetas, sin ubicación, sin monograma, sin dirección (el marco de TechToJob ya la muestra).
 - **Rendimiento (Lighthouse local, build de producción, con todo el movimiento):** móvil 100 (LCP 0,9 s, TBT 40 ms, CLS 0),
   escritorio 100, accesibilidad, buenas prácticas y SEO en 100; 336 KiB de peso. Se logró el LCP arrancando el texto del héroe en 1 % de opacidad, no en 0.
-- **Teléfono (2026-11-22):** fila de secciones que se desliza bajo el encabezado (la navegación de escritorio no cabe), robot que flota y
-  mira alrededor sin cursor, parpadeo también en táctil y respuesta al tacto (`:active`) en botones y tarjetas.
+- **Responsive (2026-11-22):** "responsive" para el usuario es **centrar los textos** en pantallas angostas, no reordenar el contenido. Se
+  retiró lo que se había hecho antes (fila de secciones, robot con movimiento propio en táctil, respuesta `:active`). Bajo 1024 px
+  (donde el diseño pasa a una columna) todo va centrado: héroe, títulos de sección, Sobre mí (frase, párrafos, botones, foto y cita),
+  Trabajo (texto y botones), Experiencia, Stack, Trabajo anterior, Contacto, pie y fichas de los casos. Las listas de datos y las trazas
+  de los casos se quedan a la izquierda porque se leen como tablas. Escritorio (1024 px o más) no cambia.
 

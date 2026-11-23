@@ -31,7 +31,7 @@ export function Contact({ c, label }: Props) {
     <section id="contact" data-section data-label={label} data-plane-zone className="wrap relative py-16 md:py-24">
       <Plane />
       <SectionHeading title={c.heading} className="mb-6" />
-      <p className="mb-10 max-w-[40ch] text-lg text-ink2 md:mb-14" data-reveal data-delay="0.05">
+      <p className="mb-10 max-w-[40ch] text-lg text-ink2 max-lg:mx-auto md:mb-14" data-reveal data-delay="0.05">
         {c.lead}
       </p>
 

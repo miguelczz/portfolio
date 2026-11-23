@@ -52,7 +52,7 @@ export function Work({ c, label, locale }: Props) {
                 </ArtFrame>
               </a>
 
-              <div className={`grid content-center gap-5 lg:col-span-5 ${flip ? "lg:order-1" : ""}`}>
+              <div className={`grid content-center gap-5 max-lg:justify-items-center lg:col-span-5 ${flip ? "lg:order-1" : ""}`}>
                 <h3 className="case-title" data-reveal>
                   {a.name}
                 </h3>
@@ -65,7 +65,7 @@ export function Work({ c, label, locale }: Props) {
                 <p className="meta text-ink2" data-reveal>
                   {caseTags[slug].join(" · ")}
                 </p>
-                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1" data-reveal>
+                <div className="flex flex-wrap items-center gap-x-6 gap-y-3 pt-1 max-lg:justify-center" data-reveal>
                   <a className="btn btn-go" href={href}>
                     {c.labels.viewCase}
                     <ArrowRight size={18} aria-hidden="true" />

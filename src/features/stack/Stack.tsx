@@ -20,7 +20,7 @@ export function Stack({ c, label }: Props) {
             <h3 className="text-[1.1rem] font-bold leading-none text-accent [font-stretch:80%] lg:col-span-3">
               {group.label}
             </h3>
-            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] leading-snug lg:col-span-9">
+            <ul className="flex flex-wrap gap-x-6 gap-y-2 text-[0.95rem] leading-snug max-lg:justify-center lg:col-span-9">
               {group.items.map((item) => (
                 <li key={item} className="stack-item" data-stack-item>
                   {item}
@@ -36,7 +36,7 @@ export function Stack({ c, label }: Props) {
           <h3 className="label mb-3 text-ink">{c.education.heading}</h3>
           <ul className="grid gap-4">
             {c.education.items.map((entry) => (
-              <li key={entry.degree} className="max-w-[60ch] text-[0.95rem] leading-snug">
+              <li key={entry.degree} className="max-w-[60ch] text-[0.95rem] leading-snug max-lg:mx-auto">
                 <p>{entry.degree}</p>
                 <p className="mt-1 text-accent">{entry.school}</p>
               </li>
@@ -48,7 +48,7 @@ export function Stack({ c, label }: Props) {
           <h3 className="label mb-3 text-ink">{c.languages.heading}</h3>
           <ul className="grid gap-2 text-[0.95rem] leading-snug">
             {c.languages.items.map((item) => (
-              <li key={item} className="max-w-[60ch]">
+              <li key={item} className="max-w-[60ch] max-lg:mx-auto">
                 {item}
               </li>
             ))}

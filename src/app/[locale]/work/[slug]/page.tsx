@@ -66,7 +66,7 @@ export default async function CasePage({ params }: Params) {
           </a>
         </nav>
       </main>
-      <footer className="wrap flex flex-wrap justify-between gap-2 border-t border-line py-8">
+      <footer className="wrap flex flex-wrap justify-between gap-2 border-t border-line py-8 max-lg:flex-col max-lg:items-center max-lg:text-center">
         <span className="label">
           © {new Date().getFullYear()} {person.name}
         </span>

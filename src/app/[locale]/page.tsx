@@ -35,7 +35,7 @@ export default async function Page({ params }: { params: Promise<{ locale: strin
         <Stack c={c.stack} label={c.nav.stack} />
         <Contact c={c.contact} label={c.nav.contact} />
       </main>
-      <footer className="wrap flex flex-wrap justify-between gap-2 border-t border-line py-8">
+      <footer className="wrap flex flex-wrap justify-between gap-2 border-t border-line py-8 max-lg:flex-col max-lg:items-center max-lg:text-center">
         <span className="label">© {new Date().getFullYear()} {person.name}</span>
         <span className="label">{c.footer}</span>
       </footer>

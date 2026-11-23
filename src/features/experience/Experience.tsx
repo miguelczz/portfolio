@@ -71,7 +71,7 @@ export function Experience({ c, locale, label }: Props) {
               <div className="lg:col-span-8">
                 <ul className="grid content-start" data-group>
                   {job.bullets.slice(0, VISIBLE).map((bullet) => (
-                    <li key={bullet} className="max-w-[68ch] border-b border-line py-3 first:pt-0 last:border-b-0" data-item>
+                    <li key={bullet} className="max-w-[68ch] border-b border-line py-3 first:pt-0 last:border-b-0 max-lg:mx-auto" data-item>
                       {bullet}
                     </li>
                   ))}
@@ -84,7 +84,7 @@ export function Experience({ c, locale, label }: Props) {
                     </summary>
                     <ul className="mt-2 grid content-start">
                       {job.bullets.slice(VISIBLE).map((bullet) => (
-                        <li key={bullet} className="max-w-[68ch] border-t border-line py-3">
+                        <li key={bullet} className="max-w-[68ch] border-t border-line py-3 max-lg:mx-auto">
                           {bullet}
                         </li>
                       ))}

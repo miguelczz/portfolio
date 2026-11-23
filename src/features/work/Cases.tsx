@@ -55,7 +55,7 @@ function CaseShell(p: ShellProps) {
               <p className="label mb-1">{p.stackLabel}</p>
               <p className="meta">{p.stack}</p>
             </div>
-            <div className="flex flex-wrap items-center gap-x-6 gap-y-3" data-reveal>
+            <div className="flex flex-wrap items-center gap-x-6 gap-y-3 max-lg:justify-center" data-reveal>
               {p.actions}
             </div>
           </div>
@@ -79,7 +79,7 @@ function Block({ title, children, tone }: { title: string; children: ReactNode; 
 
 function Lines({ items }: { items: readonly string[] }) {
   return (
-    <ul className="border-t border-line" data-group>
+    <ul className="border-t border-line max-lg:text-left" data-group>
       {items.map((item) => (
         <li key={item} className="max-w-[68ch] border-b border-line py-3" data-item>
           {item}
@@ -118,7 +118,7 @@ export function Cautelia({ c, page }: { c: Content["work"]; page?: boolean }) {
       </ArtFrame>
 
       <Block title={c.labels.decision}>
-        <p className="max-w-[64ch] text-[1.125rem]" data-reveal>
+        <p className="max-w-[64ch] text-[1.125rem] max-lg:mx-auto" data-reveal>
           {a.decision}
         </p>
       </Block>
@@ -206,7 +206,7 @@ export function Wifi({ c, page }: { c: Content["work"]; page?: boolean }) {
       </ArtFrame>
 
       <Block title={c.labels.decision}>
-        <p className="max-w-[64ch] text-[1.125rem]" data-reveal>
+        <p className="max-w-[64ch] text-[1.125rem] max-lg:mx-auto" data-reveal>
           {a.decision}
         </p>
       </Block>

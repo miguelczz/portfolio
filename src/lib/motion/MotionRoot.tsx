@@ -80,9 +80,9 @@ export function MotionRoot() {
           cleanups.push(pointerArt());
           cleanups.push(wifiSteer());
           cleanups.push(planeFollow());
+          cleanups.push(blink());
           cleanups.push(magnetic());
         }
-        cleanups.push(blink());
         heroIntro();
         headings();
         parallax();

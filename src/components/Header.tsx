@@ -58,6 +58,14 @@ export function Header({ c, locale, name, path }: Props) {
           <ThemeToggle label={c.theme} />
         </div>
       </div>
+      {/* Teléfono: la navegación de arriba no cabe, así que las secciones van en una fila que se desliza. */}
+      <nav aria-label="Secciones" className="section-nav md:hidden">
+        {(["about", "work", "experience", "stack", "contact"] as const).map((key) => (
+          <a key={key} className="label text-ink" href={`${prefix}#${key}`}>
+            {c[key]}
+          </a>
+        ))}
+      </nav>
       <span className="progress" data-progress aria-hidden="true" />
     </header>
   );

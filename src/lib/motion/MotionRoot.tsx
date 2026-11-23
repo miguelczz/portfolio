@@ -66,6 +66,12 @@ export function MotionRoot() {
     const root = document.documentElement;
     const mm = gsap.matchMedia();
 
+    // Si la página abre ya desplazada (enlace con #ancla o recarga a media página), los
+    // disparadores de una sola vez se cumplen y se destruyen mientras se crean, y GSAP falla.
+    // Se crean desde arriba y después se vuelve al sitio.
+    const startY = window.scrollY;
+    if (startY > 0) window.scrollTo({ top: 0, behavior: "instant" });
+
     mm.add(
       {
         motion: "(prefers-reduced-motion: no-preference)",
@@ -106,6 +112,7 @@ export function MotionRoot() {
     );
 
     // Después de crear los ScrollTrigger: moverse antes provoca un error dentro de GSAP.
+    if (startY > 0) window.scrollTo({ top: startY, behavior: "instant" });
     restoreScroll();
 
     // Avisa al script de cabecera de que el movimiento arrancó (o no hace falta).

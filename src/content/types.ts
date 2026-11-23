@@ -116,6 +116,7 @@ export type Content = {
   contact: {
     heading: string;
     lead: string;
+    hello: string;
     rows: { email: string; whatsapp: string; linkedin: string; github: string };
     copy: string;
     copied: string;

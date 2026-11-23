@@ -38,7 +38,7 @@ export const en: Content = {
     about: [
       "AI agent systems, from the model to deployment.",
       "I'm Miguel, a Full Stack AI Developer in Medellín. I build AI agent systems end to end: LLM orchestration, backend, interface and infrastructure, with clean architecture, tests and continuous deployment to production.",
-      "I develop in Python and TypeScript, with FastAPI and Next.js; agents with LLMs, RAG and MCP; PostgreSQL, Docker and GitHub Actions. Over 2 years of professional experience, projects in production and three projects awarded best of their semester.",
+      "I turn processes that are still done by hand, like screening résumés or analyzing a network capture, into AI agents with clear limits. Over 2 years of professional experience, projects in production and three projects awarded best of their semester.",
     ],
     quote: {
       text: "We can only see a short distance ahead, but we can see plenty there that needs to be done.",
@@ -361,6 +361,7 @@ export const en: Content = {
   contact: {
     heading: "Contact",
     lead: "Write to me through whichever channel you prefer.",
+    hello: "Hello!",
     rows: { email: "Email", whatsapp: "WhatsApp", linkedin: "LinkedIn", github: "GitHub" },
     copy: "Copy",
     copied: "Copied",

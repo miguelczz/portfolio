@@ -38,7 +38,7 @@ export const es: Content = {
     about: [
       "Sistemas de agentes de IA, del modelo al despliegue.",
       "Soy Miguel, Desarrollador de Software en Medellín. Creo sistemas de agentes de IA de principio a fin: orquestación con LLMs, backend, interfaz e infraestructura, con arquitectura limpia, pruebas y despliegue continuo a producción.",
-      "Desarrollo en Python y TypeScript, con FastAPI y Next.js; agentes con LLMs, RAG y MCP; PostgreSQL, Docker y GitHub Actions. Más de 2 años de experiencia profesional, proyectos en producción y tres proyectos premiados como el mejor de su semestre.",
+      "Convierto procesos que hoy se hacen a mano, como revisar hojas de vida o analizar una captura de red, en agentes de IA con límites claros. Más de 2 años de experiencia profesional, proyectos en producción y tres proyectos premiados como el mejor de su semestre.",
     ],
     quote: {
       text: "Solo podemos ver un trecho corto hacia adelante, pero allí vemos mucho por hacer.",
@@ -360,6 +360,7 @@ export const es: Content = {
   contact: {
     heading: "Contacto",
     lead: "Escríbeme por el medio que prefieras.",
+    hello: "Hola!",
     rows: { email: "Correo", whatsapp: "WhatsApp", linkedin: "LinkedIn", github: "GitHub" },
     copy: "Copiar",
     copied: "Copiado",

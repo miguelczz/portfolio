@@ -685,6 +685,53 @@
       display: none;
     }
   }
+  /* Sin ratón: el avión quieto, centrado bajo las tarjetas, ligeramente inclinado. */
+  .plane-static {
+    display: none;
+    width: 5.5rem;
+    margin: 2.75rem auto 0;
+    rotate: -14deg;
+  }
+  .plane-static svg {
+    display: block;
+    width: 100%;
+    height: auto;
+    overflow: visible;
+  }
+  @media not all and (hover: hover) and (pointer: fine) {
+    .plane-static {
+      display: block;
+    }
+  }
+  /* Contacto en escritorio: las tarjetas a la izquierda y, a la derecha, la palabra de saludo
+     apoyada en el "suelo" (el borde inferior de las tarjetas). En angosto no hay columna que
+     llenar, así que no se muestra: ahí queda solo el avión quieto. */
+  .contact-art {
+    display: none;
+  }
+  @media (min-width: 1024px) {
+    .contact-list {
+      grid-column: span 7 / span 7;
+    }
+    .contact-art {
+      display: flex;
+      grid-column: span 5 / span 5;
+      align-self: stretch;
+      align-items: flex-end;
+      justify-content: flex-start;
+    }
+    .contact-hello {
+      margin: 0 0 -0.05em;
+      font-weight: 800;
+      font-stretch: 62%;
+      font-size: clamp(6rem, 13vw, 12rem);
+      line-height: 0.74;
+      letter-spacing: -0.02em;
+      color: transparent;
+      -webkit-text-stroke: 1.5px var(--accent);
+      user-select: none;
+    }
+  }
   /* Mientras el avión es el cursor, se oculta el del sistema (también sobre enlaces). */
   .plane-cursor,
   .plane-cursor * {

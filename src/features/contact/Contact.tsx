@@ -1,7 +1,6 @@
 import { ArrowUpRight, EnvelopeSimple, GithubLogo, LinkedinLogo, WhatsappLogo } from "@phosphor-icons/react/dist/ssr";
 import type { ComponentType } from "react";
-import { Plane } from "@/components/art/Plane";
-import { PlaneArt } from "@/components/art/PlaneArt";
+import { Plane, PlaneStatic } from "@/components/art/Plane";
 import { CopyButton } from "@/components/CopyButton";
 import { SectionHeading } from "@/components/SectionHeading";
 import { person } from "@/content/shared";
@@ -36,7 +35,7 @@ export function Contact({ c, label }: Props) {
       </p>
 
       <div className="grid gap-10 lg:grid-cols-12 lg:items-start lg:gap-14">
-        <ul className="grid gap-4 sm:grid-cols-3 lg:col-span-7" data-group>
+        <ul className="contact-list grid gap-4 sm:grid-cols-3" data-group>
           {channels.map(({ key, label: name, value, href, Icon, external }) =>
             key === "email" ? (
               // Mismo diseño que las demás tarjetas; el botón de copiar va junto a la flecha.
@@ -81,10 +80,12 @@ export function Contact({ c, label }: Props) {
           )}
         </ul>
 
-        <div className="lg:col-span-5">
-          <PlaneArt className="w-full" />
+        <div className="contact-art" aria-hidden="true">
+          <p className="contact-hello">{c.hello}</p>
         </div>
       </div>
+
+      <PlaneStatic />
     </section>
   );
 }

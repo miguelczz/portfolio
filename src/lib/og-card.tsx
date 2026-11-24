@@ -45,7 +45,7 @@ async function render(content: ReactElement) {
           color: color.ink,
           fontFamily: "Archivo",
           backgroundColor: color.bg,
-          backgroundImage: `radial-gradient(circle at 80% 50%, rgba(124,149,245,0.16), rgba(14,16,21,0) 55%)`,
+          backgroundImage: `radial-gradient(circle at 76% 50%, rgba(124,149,245,0.16), rgba(14,16,21,0) 55%)`,
         }}
       >
         {content}
@@ -86,7 +86,7 @@ export function homeCard({ name, title, stackline }: HomeCardProps) {
   const [first, ...rest] = name.split(" ");
   return render(
     <>
-      <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, width: 646 }}>
+      <div style={{ display: "flex", flexDirection: "column", flexShrink: 0, width: 631 }}>
         <div
           style={{
             display: "flex",
@@ -107,7 +107,7 @@ export function homeCard({ name, title, stackline }: HomeCardProps) {
         </div>
       </div>
       {/* El robot va a continuación, pegado al margen derecho: columna izquierda de ancho fijo y nada que se encoja. */}
-      <div style={{ display: "flex", flexShrink: 0, width: 410, height: 410 }}>
+      <div style={{ display: "flex", flexShrink: 0, width: 410, height: 410, marginTop: 42 }}>
         <Robot size={410} />
       </div>
     </>,

@@ -4,7 +4,7 @@
 
 Bilingual (ES/EN) personal site with the projects and experience of Miguel Zuluaga, a
 software developer focused on AI agents. Live at
-[mzuluaga.vercel.app](https://mzuluaga.vercel.app); every change on `main` deploys automatically on Vercel.
+[miguelzuluaga.dev](https://miguelzuluaga.dev); every change on `main` deploys automatically on Vercel.
 
 ## What is different about it
 

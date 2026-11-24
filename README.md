@@ -4,7 +4,7 @@
 
 Sitio personal bilingüe (ES/EN) con los proyectos y la experiencia de Miguel Zuluaga,
 Desarrollador de Software enfocado en agentes de IA. Publicado en
-[mzuluaga.vercel.app](https://mzuluaga.vercel.app); cada cambio en `main` se despliega solo en Vercel.
+[miguelzuluaga.dev](https://miguelzuluaga.dev); cada cambio en `main` se despliega solo en Vercel.
 
 ## Qué tiene de particular
 

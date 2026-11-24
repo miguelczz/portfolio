@@ -43,7 +43,8 @@ Distintos a propósito: encajan con cada mercado. El hero repite el del idioma a
 - **Formulario:** no en la v1. Con cuatro vías directas el formulario añade spam, un servicio
   de correo y un backend por mantener, y casi no suma. Si se quiere después: función de Vercel,
   un proveedor de correo y protección anti-bots.
-- **Alojamiento:** Vercel, sin dominio propio por ahora (URL `.vercel.app`).
+- **Alojamiento:** Vercel, con dominio propio `miguelzuluaga.dev` (registrado en Cloudflare, 2026-11-24). Las
+  direcciones `.vercel.app` anteriores redirigen al dominio nuevo (`next.config.ts`).
 - **Agente Experto Wi-Fi:** se puede mostrar todo lo del repositorio.
 - **Foto:** esta versión no lleva; el CV ya se mantiene sin foto.
 

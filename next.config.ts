@@ -1,8 +1,8 @@
 import type { NextConfig } from "next";
 
-/** Dirección que se comparte. La primera dirección de Vercel sigue viva pero redirige aquí. */
-const PUBLIC_HOST = "mzuluaga.vercel.app";
-const OLD_HOSTS = ["portfolio-phi-inky.vercel.app"];
+/** Dirección que se comparte. Las direcciones anteriores de Vercel siguen vivas pero redirigen aquí. */
+const PUBLIC_HOST = "miguelzuluaga.dev";
+const OLD_HOSTS = ["mzuluaga.vercel.app", "portfolio-phi-inky.vercel.app"];
 
 const nextConfig: NextConfig = {
   turbopack: {

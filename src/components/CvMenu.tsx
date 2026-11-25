@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useId, useRef, useState } from "react";
-import { CaretDown, DownloadSimple } from "@phosphor-icons/react/dist/ssr";
+import { DownloadSimple } from "@phosphor-icons/react/dist/ssr";
 
 type Option = { label: string; href: string; filename: string };
 
@@ -55,7 +55,6 @@ export function CvMenu({ label, ariaLabel, options }: Props) {
       >
         {label}
         <DownloadSimple size={16} weight="bold" aria-hidden="true" />
-        <CaretDown className="cv-caret" size={12} weight="bold" aria-hidden="true" />
       </button>
       {open ? (
         <ul id={panelId} className="cv-panel">

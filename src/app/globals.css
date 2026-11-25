@@ -154,12 +154,6 @@
   .cv-menu {
     position: relative;
   }
-  .cv-caret {
-    transition: rotate 0.2s;
-  }
-  .cv-link[aria-expanded="true"] .cv-caret {
-    rotate: 180deg;
-  }
   .cv-panel {
     position: absolute;
     top: calc(100% + 0.35rem);

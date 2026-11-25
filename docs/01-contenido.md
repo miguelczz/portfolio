@@ -21,7 +21,7 @@ Más adelante, y solo si A mide bien: el mini-agente (dirección C) dentro del h
 
 | Proyecto | Enlaces | Qué se puede mostrar | Datos verificados disponibles |
 |---|---|---|---|
-| **Cautelia** (2026) | cautelia.app, github.com/miguelczz/cautelia | Todo: demo, repo, arquitectura, fallos | README: 258 casos de evaluación en la última corrida, "ningún caso falló en esa corrida"; latencia del chat desde que el servidor recibe el mensaje hasta la primera palabra: ES p50 1,6 s / p95 2,3 s (87 turnos), EN p50 1,5 s / p95 2,2 s (85 turnos). Latencia de voz: no medida. |
+| **Cautelia** (2026) | cautelia.app, github.com/miguelczz/cautelia | Todo: demo, repo, arquitectura, fallos | README: casos de evaluación automatizados en la última corrida, "ningún caso falló en esa corrida" (sin cifra exacta, decisión de Miguel 2026-11-25); latencia del chat desde que el servidor recibe el mensaje hasta la primera palabra: ES p50 1,6 s / p95 2,3 s (87 turnos), EN p50 1,5 s / p95 2,2 s (85 turnos). Latencia de voz: no medida. |
 | **ISSI HR** (2026) | issiagent.com | **Solo capturas de la landing.** Sin arquitectura ni pantallas internas | Ninguna cifra pública. Describir con las viñetas del CV (multiempresa, Keycloak, RLS, WhatsApp, CI/CD) sin detalles internos |
 | **Agente Experto Wi-Fi** (2026) | github.com/miguelczz/wifi_expert_agent | Todo lo del repositorio (decisión de Miguel, 2026-11-12) | Se leen del README al construir el caso |
 | **Talky**, **Kakureya**, **Forest Custodian** | repos en GitHub | Trabajo anterior con premios de proyecto integrador | Premios del CV: mejor proyecto pedagógico integrador de 4.º, 3.er y 1.er semestre |

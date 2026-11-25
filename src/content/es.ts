@@ -25,7 +25,10 @@ export const es: Content = {
     home: "Inicio",
     cv: "CV",
     cvLabel: "Descargar CV en PDF",
-    cvHref: "/cv/miguel-zuluaga-cv-es.pdf",
+    cvOptions: [
+      { label: "Español", href: "/cv/miguel-zuluaga-cv-es.pdf", filename: "Miguel-Zuluaga-CV-ES.pdf" },
+      { label: "Inglés", href: "/cv/miguel-zuluaga-cv-en.pdf", filename: "Miguel-Zuluaga-CV-EN.pdf" },
+    ],
   },
   hero: {
     title: "Desarrollador de Software",
@@ -70,12 +73,12 @@ export const es: Content = {
       stack:
         "React, TypeScript, FastAPI, Python, LangGraph, Claude Haiku 5.5, PostgreSQL (RLS, pgvector), Deepgram, Cartesia, Langfuse, guardrails de entrada y salida, servidor MCP propio, Docker, Google Cloud Run",
       facts: [
-        "Más de 4.000 pruebas automáticas con un piso de cobertura del 80 %.",
+        "Miles de pruebas automáticas, con un piso de cobertura del 80 %.",
         "Aseguradoras aisladas con seguridad a nivel de fila, y una prueba que falla si alguna tabla no la tiene.",
         "Gasto con límites firmes: saldos prepagados, un tope en la aplicación y límites diarios por visitante.",
       ],
       failsLines: [
-        "Evaluación: 258 casos registrados en la última corrida completa (15 de octubre de 2026). Ninguno falló.",
+        "Evaluación: casos automatizados en español e inglés, incluidos intentos de engañar a la agente. En la última corrida completa (15 de octubre de 2026) ninguno falló.",
         "Latencia del chat, desde que el servidor recibe el mensaje hasta la primera palabra: p50 1,6 s y p95 2,3 s en español (87 turnos); p50 1,5 s y p95 2,2 s en inglés (85 turnos).",
         "Latencia de voz: no medida.",
         "No está conectada a ninguna aseguradora real. La voz funciona solo en el navegador, con un límite de llamadas por día.",

@@ -18,7 +18,7 @@ export type Content = {
     home: string;
     cv: string;
     cvLabel: string;
-    cvHref: string;
+    cvOptions: readonly { label: string; href: string; filename: string }[];
   };
   hero: {
     title: string;

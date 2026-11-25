@@ -25,7 +25,10 @@ export const en: Content = {
     home: "Home",
     cv: "CV",
     cvLabel: "Download CV as PDF",
-    cvHref: "/cv/miguel-zuluaga-cv-en.pdf",
+    cvOptions: [
+      { label: "English", href: "/cv/miguel-zuluaga-cv-en.pdf", filename: "Miguel-Zuluaga-CV-EN.pdf" },
+      { label: "Spanish", href: "/cv/miguel-zuluaga-cv-es.pdf", filename: "Miguel-Zuluaga-CV-ES.pdf" },
+    ],
   },
   hero: {
     title: "Full Stack AI Developer",
@@ -70,12 +73,12 @@ export const en: Content = {
       stack:
         "React, TypeScript, FastAPI, Python, LangGraph, Claude Haiku 5.5, PostgreSQL (RLS, pgvector), Deepgram, Cartesia, Langfuse, input and output guardrails, custom MCP server, Docker, Google Cloud Run",
       facts: [
-        "More than 4,000 automated tests with an 80% coverage floor.",
+        "Thousands of automated tests, with an 80% coverage floor.",
         "Insurers isolated with row-level security, and a test that fails if any table lacks it.",
         "Hard spending limits: prepaid balances, an application-level ceiling and daily limits per visitor.",
       ],
       failsLines: [
-        "Evaluation: 258 cases recorded in the latest full run (October 15, 2026). None failed.",
+        "Evaluation: automated cases in Spanish and English, including attempts to trick the agent. In the latest full run (October 15, 2026) none failed.",
         "Chat latency, from the moment the server receives the message to the first word: p50 1.6 s and p95 2.3 s in Spanish (87 turns); p50 1.5 s and p95 2.2 s in English (85 turns).",
         "Voice latency: not measured.",
         "It is not connected to any real insurer. Voice works in the browser only, with a daily call limit.",

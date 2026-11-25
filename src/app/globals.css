@@ -150,6 +150,43 @@
     background: var(--accent);
     color: var(--bg);
   }
+  /* Menú de idiomas del CV: se abre debajo del botón, alineado a su borde derecho. */
+  .cv-menu {
+    position: relative;
+  }
+  .cv-caret {
+    transition: rotate 0.2s;
+  }
+  .cv-link[aria-expanded="true"] .cv-caret {
+    rotate: 180deg;
+  }
+  .cv-panel {
+    position: absolute;
+    top: calc(100% + 0.35rem);
+    right: 0;
+    z-index: 50;
+    min-width: 11rem;
+    margin: 0;
+    padding: 0.25rem;
+    list-style: none;
+    border: 1px solid var(--line);
+    border-radius: 2px;
+    background: var(--bg);
+  }
+  .cv-option {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.75rem;
+    padding: 0.6rem 0.75rem;
+    color: var(--ink);
+    transition: background-color 0.2s, color 0.2s;
+  }
+  .cv-option:hover,
+  .cv-option:focus-visible {
+    background: var(--accent);
+    color: var(--bg);
+  }
   /* ---------- Pantallas angostas (menos de 1024 px): textos centrados ----------
      El diseño pasa a una sola columna y todo se centra; las listas de datos y las trazas
      de los casos se quedan a la izquierda porque se leen como tablas. */

@@ -1,6 +1,6 @@
-import { DownloadSimple } from "@phosphor-icons/react/dist/ssr";
 import type { Locale } from "@/lib/i18n/config";
 import type { Content } from "@/content/types";
+import { CvMenu } from "./CvMenu";
 import { LangSwitch } from "./LangSwitch";
 import { ThemeToggle } from "./ThemeToggle";
 
@@ -44,16 +44,7 @@ export function Header({ c, locale, name, path }: Props) {
         </nav>
 
         <div className="flex items-center gap-2">
-          <a
-            className="cv-link label"
-            href={c.cvHref}
-            download={`Miguel-Zuluaga-CV-${locale.toUpperCase()}.pdf`}
-            aria-label={c.cvLabel}
-            title={c.cvLabel}
-          >
-            {c.cv}
-            <DownloadSimple size={16} weight="bold" aria-hidden="true" />
-          </a>
+          <CvMenu label={c.cv} ariaLabel={c.cvLabel} options={c.cvOptions} />
           <LangSwitch href={`${c.switchHref}${path ?? ""}`} label={c.switchTo} target={locale === "es" ? "en" : "es"} />
           <ThemeToggle label={c.theme} />
         </div>
